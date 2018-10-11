@@ -2,11 +2,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Accueil{% endblock %} - Chicken Events</title>
+        <link rel="stylesheet" href="/dist/{{ asset( 'main.css' ) }}">
     </head>
     <body>
+    <header>
+        {% include 'components/menu.twig' %}
+    </header>
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    <script src="/dist/{{ asset( 'main.js' ) }}"></script>
     </body>
 </html>
