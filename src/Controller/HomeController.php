@@ -14,10 +14,11 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $form = $this->createForm( PostType::class, Post::class);
+        $post = new Post();
+        $form = $this->createForm( PostType::class, $post );
 
         return $this->render('home.html.twig', [
-            'controller_name' => 'HomeController',
+            'form'  =>  $form->createView()
         ]);
     }
 }

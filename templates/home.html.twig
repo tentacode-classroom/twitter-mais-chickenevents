@@ -3,5 +3,5 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-
+    {% include 'components/post-form.html.twig' with { 'form': form } %}
 {% endblock %}
