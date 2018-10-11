@@ -16,9 +16,10 @@ class InstallCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
+            ->setDescription('Install the project')
             ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->setHelp('This command allows you to create a user...')
         ;
     }
 
