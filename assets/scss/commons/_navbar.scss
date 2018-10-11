@@ -1,0 +1,56 @@
+body > header  {
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: $primaryCOlor;
+
+  nav{
+
+    ul {
+      width: 90%;
+      max-width: $maxContentSize;
+      margin: 0 auto;
+      display: flex;
+      padding: 0;
+      height: 70px;
+
+      li {
+        display: block;
+        height: 100%;
+        margin: 0 8px;
+
+        a {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          color: white;
+          position: relative;
+          padding: 0 8px;
+          font-weight: 600;
+          text-transform: uppercase;
+          font-size: 17px;
+
+          &::after {
+            content: '';
+            display: block;
+            height: 6px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: $white;
+            transition: transform $transitionTime;
+            transform: translateY( 6px );
+          }
+          &:hover {
+            text-decoration: none;
+            color: $white;
+
+            &::after{
+              transform: translateY( 0 );
+            }
+          }
+        }
+      }
+    }
+  }
+}
