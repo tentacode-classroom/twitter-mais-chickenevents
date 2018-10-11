@@ -1,0 +1,12 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $veryHardBlack;
+  display: flex;
+  flex-direction: column;
+
+  & > section {
+    width: 90%;
+    max-width: $maxContentSize;
+    margin: 15px auto;
+  }
+}
