@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création de post{% endblock %}
+{% block title %}New Post{% endblock %}
 
 {% block body %}
+    <section>
+        <h1>Create new Post</h1>
 
-    <a class="back" href="{{ path('post_index') }}">Retour à la list</a>
+        {{ include('admin/post/_form.html.twig') }}
 
-    <h1>Création d'un nouveau psot</h1>
-
-    {{ include('admin/post/_form.html.twig') }}
+        <a href="{{ path('post_index') }}">back to list</a>
+    </section>
 {% endblock %}

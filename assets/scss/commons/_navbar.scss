@@ -1,3 +1,5 @@
+$navHeight: 50px;
+
 body > header  {
   width: 100%;
   margin-bottom: 15px;
@@ -11,7 +13,7 @@ body > header  {
       margin: 0 auto;
       display: flex;
       padding: 0;
-      height: 70px;
+      height: $navHeight;
 
       li {
         display: block;

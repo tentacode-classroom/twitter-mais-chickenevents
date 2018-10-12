@@ -125,7 +125,7 @@ let config = {
         new ExtractCss({
             filename: './[name].[hash:8].css'
         }),
-        new FolderCleaning(['dist'], {
+        new FolderCleaning(['dist', 'images'], {
             root: path.resolve('./public'),
             verbose: true,
             dry: false

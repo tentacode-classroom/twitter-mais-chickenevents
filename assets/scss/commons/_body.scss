@@ -8,5 +8,16 @@ body {
     width: 90%;
     max-width: $maxContentSize;
     margin: 15px auto;
+    display: grid;
+    grid-template-columns: 27fr 63fr ;
+    grid-column-gap: 40px;
+
+    & > * {
+      overflow: hidden;
+
+      & > section {
+        margin: 30px auto;
+      }
+    }
   }
 }

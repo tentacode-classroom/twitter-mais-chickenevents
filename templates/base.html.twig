@@ -6,19 +6,31 @@
     <link rel="stylesheet" href="/dist/{{ asset( 'main.css' ) }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
 </head>
-<body>
+<body class="{% block body_class %}body{% endblock %}">
 <header>
     <nav>
         <ul>
             <li><a href="{{ path('home') }}">Accueil</a></li>
+
+            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path( 'login' ) }}">Connexion</a></li>
+                <li><a href="{{ path( 'registration' ) }}">Inscription</a></li>
+            {% else %}
+                <li><a href="{{ path( 'logout' ) }}">Déconnexion</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
-{% block search %}<div></div>{% endblock %}
 
 <section>
-    {% block body %}<div></div>{% endblock %}
+    <aside>
+        {% block aside %}<div></div>{% endblock %}
+    </aside>
+    <main>
+        {% block body %}<div></div>{% endblock %}
+    </main>
 </section>
+
 <script src="/dist/{{ asset( 'main.js' ) }}"></script>
 </body>
 </html>

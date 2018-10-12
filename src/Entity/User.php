@@ -5,13 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -54,16 +56,37 @@ class User
      * @ORM\Column(type="date")
      * @assert\NotBlank()
      */
-    private $birthday;
+    private $birthDate;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", orphanRemoval=true)
      */
     private $posts;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Post", mappedBy="userTimeline")
+     */
+    private $postsTimeline;
+
+    /**
+     * @ORM\Column(type="simple_array")
+     */
+    private $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $picture;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->postsTimeline = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,16 +142,21 @@ class User
         return $this;
     }
 
-    public function getBirthday(): ?\DateTimeInterface
+    public function getBirthDate(): ?\DateTimeInterface
     {
-        return $this->birthday;
+        return $this->birthDate;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthDate(\DateTimeInterface $birthDate): self
     {
-        $this->birthday = $birthday;
+        $this->birthDate = $birthDate;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->firstname;
     }
 
     /**
@@ -162,8 +190,94 @@ class User
         return $this;
     }
 
-    public function __toString()
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPostsTimeline(): Collection
     {
-        return $this->firstname;
+        return $this->postsTimeline;
+    }
+
+    public function addPostsTimeline(Post $postsTimeline): self
+    {
+        if (!$this->postsTimeline->contains($postsTimeline)) {
+            $this->postsTimeline[] = $postsTimeline;
+            $postsTimeline->addUserTimeline($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostsTimeline(Post $postsTimeline): self
+    {
+        if ($this->postsTimeline->contains($postsTimeline)) {
+            $this->postsTimeline->removeElement($postsTimeline);
+            $postsTimeline->removeUserTimeline($this);
+        }
+
+        return $this;
+    }
+
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials(){}
+
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
     }
 }

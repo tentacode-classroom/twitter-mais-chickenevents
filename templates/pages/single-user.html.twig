@@ -1,0 +1,19 @@
+{% extends 'client-base.html.twig' %}
+
+{% block title %}
+    {% if user %}
+        {{ user.firstname }} {{ user.lastname }}
+    {% else %}
+        Utilisateur introuvable
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <section>
+        {% if user %}
+            {% include 'components/user-block.html.twig' %}
+        {% else %}
+            <h1>Utilisateur introuvable</h1>
+        {% endif %}
+    </section>
+{% endblock %}

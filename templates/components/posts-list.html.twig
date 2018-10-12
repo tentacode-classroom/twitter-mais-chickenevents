@@ -1,0 +1,9 @@
+<div class="posts-list">
+    {% for post in posts %}
+        <article class="post">
+            <p>{{ post.user.firstname }} {{ post.user.lastname }}</p>
+            <p>{{ post.message }}</p>
+            <time>{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
+        </article>
+    {% endfor %}
+</div>

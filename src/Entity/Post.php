@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,9 +34,15 @@ class Post
      */
     private $user;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsTimeline")
+     */
+    private $userTimeline;
+
     public function __construct()
     {
         $this->dateCreated = new \DateTime();
+        $this->userTimeline = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,6 +82,32 @@ class Post
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUserTimeline(): Collection
+    {
+        return $this->userTimeline;
+    }
+
+    public function addUserTimeline(User $userTimeline): self
+    {
+        if (!$this->userTimeline->contains($userTimeline)) {
+            $this->userTimeline[] = $userTimeline;
+        }
+
+        return $this;
+    }
+
+    public function removeUserTimeline(User $userTimeline): self
+    {
+        if ($this->userTimeline->contains($userTimeline)) {
+            $this->userTimeline->removeElement($userTimeline);
+        }
 
         return $this;
     }
