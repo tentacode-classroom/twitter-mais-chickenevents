@@ -17,7 +17,7 @@ class HomeController extends AbstractController
         $post = new Post();
         $form = $this->createForm( PostType::class, $post );
 
-        return $this->render('home.html.twig', [
+        return $this->render('pages/home.html.twig', [
             'form'  =>  $form->createView()
         ]);
     }
