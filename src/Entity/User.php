@@ -38,7 +38,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      * @assert\NotBlank()
      * @Assert\Length(min=8,
-     *     minMessage = "Attention ton mot de passe fait 6 caractères !!!")
+     *     minMessage = "Attention ton mot de passe fait moins de 8 caractères !!!")
      */
     private $password;
 
@@ -154,7 +154,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->firstname;
     }
