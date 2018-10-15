@@ -38,7 +38,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      * @assert\NotBlank()
      * @Assert\Length(min=8,
-     *     minMessage = "Attention ton mot de passe fait 6 caractères !!!")
+     *     minMessage = "Attention ton mot de passe fait moins de 8 caractères !!!")
      */
     private $password;
 
@@ -82,6 +82,16 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="text", nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Follow", mappedBy="follower", cascade={"persist", "remove"})
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Follow", mappedBy="following", cascade={"persist", "remove"})
+     */
+    private $followings;
 
     public function __construct()
     {
@@ -154,7 +164,7 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
         return $this->firstname;
     }
@@ -282,6 +292,40 @@ class User implements UserInterface, \Serializable
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getFollowers(): ?Follow
+    {
+        return $this->followers;
+    }
+
+    public function setFollowers(Follow $followers): self
+    {
+        $this->followers = $followers;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $followers->getFollower()) {
+            $followers->setFollower($this);
+        }
+
+        return $this;
+    }
+
+    public function getFollowings(): ?Follow
+    {
+        return $this->followings;
+    }
+
+    public function setFollowings(Follow $followings): self
+    {
+        $this->followings = $followings;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $followings->getFollowing()) {
+            $followings->setFollowing($this);
+        }
 
         return $this;
     }
