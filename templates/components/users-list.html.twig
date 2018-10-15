@@ -1,0 +1,5 @@
+<div class="users-list">
+    {% for user in users %}
+        {% include 'components/user-block.html.twig' with { 'user': user } %}
+    {% endfor %}
+</div>

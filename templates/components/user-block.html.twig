@@ -1,0 +1,24 @@
+<div class="user-block">
+    <figure>
+        {% if user.picture %}
+            <img src="{{ user.picture }}" alt="photo de {{ user.username }}">
+        {% else %}
+            <img src="https://static3.7sur7.be/static/photo/2016/12/6/6/20160104164613/media_xll_8288781.jpg"
+                 alt="photo de {{ user.username }}">
+        {% endif %}
+    </figure>
+    <p>
+        {{ user.firstname }} {{ user.lastname }}
+        <a href="{{ path( 'single_user', { 'id': user.pseudo }) }}">@{{ user.pseudo }}</a>
+    </p>
+    <div class="user-block__details">
+        <p>
+            Posts
+            <span>{{ user.postsTimeline|length }}</span>
+        </p>
+        <p>
+            Abonnés
+            {#<span>{{ dump(user) }}</span>#}
+        </p>
+    </div>
+</div>
