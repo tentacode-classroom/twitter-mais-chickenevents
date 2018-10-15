@@ -2,18 +2,21 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color: $veryHardBlack;
   display: flex;
+  background-color: $lightGray;
   flex-direction: column;
 
-  & > section {
+  section.container {
     width: 90%;
     max-width: $maxContentSize;
     margin: 15px auto;
     display: grid;
     grid-template-columns: 27fr 63fr ;
-    grid-column-gap: 40px;
+    grid-column-gap: 6px;
+    padding: 0;
 
     & > * {
       overflow: hidden;
+      padding: 10px;
 
       & > section {
         margin: 30px auto;

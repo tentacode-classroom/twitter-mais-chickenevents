@@ -1,0 +1,18 @@
+section.posts-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2px;
+
+  .post {
+    background-color: $white;
+    padding: 12px;
+    border: 1px solid #e6ecf0;
+
+    &__user-name {
+
+    }
+    &__message {
+
+    }
+  }
+}

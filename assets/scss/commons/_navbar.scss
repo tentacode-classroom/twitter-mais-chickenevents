@@ -6,8 +6,10 @@ body > header  {
   background-color: $primaryCOlor;
 
   nav{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
 
     ul {
+      overflow: hidden;
       width: 90%;
       max-width: $maxContentSize;
       margin: 0 auto;
