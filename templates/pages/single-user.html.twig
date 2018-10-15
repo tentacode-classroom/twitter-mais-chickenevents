@@ -1,0 +1,13 @@
+{% extends 'client-base.html.twig' %}
+
+{% block title %}
+    {% if user %}
+        {{ user.firstname }} {{ user.lastname }}
+    {% else %}
+        Utilisateur introuvable
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% include '/components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
+{% endblock %}

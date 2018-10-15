@@ -3,4 +3,9 @@
 @import "commons/variables";
 @import "commons/body";
 @import "commons/navbar";
-@import "commons/search";
+
+@import "components/search";
+@import "components/user-block";
+@import "components/posts-list";
+
+@import "layouts/login";

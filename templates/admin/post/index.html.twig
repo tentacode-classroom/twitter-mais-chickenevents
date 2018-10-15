@@ -3,35 +3,37 @@
 {% block title %}Post index{% endblock %}
 
 {% block body %}
-    <h1>Post index</h1>
+    <section>
+        <h1>Post index</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
-                <th>Date de création</th>
+                <th>DateCreated</th>
                 <th>Message</th>
-                <th>Actions</th>
+                <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for post in posts %}
-            <tr>
-                <td>{{ post.id }}</td>
-                <td>{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i:s') : '' }}</td>
-                <td>{{ post.message }}</td>
-                <td>
-                    <a href="{{ path('post_show', {'id': post.id}) }}">Voir</a>
-                    <a href="{{ path('post_edit', {'id': post.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Il n'y a pas encore de données</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.dateCreated ? post.dateCreated|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ post.message }}</td>
+                    <td>
+                        <a href="{{ path('post_show', {'id': post.id}) }}">show</a>
+                        <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('post_new') }}">Ajouter un message</a>
+        <a href="{{ path('post_new') }}">Create new</a>
+    </section>
 {% endblock %}

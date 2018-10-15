@@ -1,17 +1,21 @@
+$navHeight: 50px;
+
 body > header  {
   width: 100%;
   margin-bottom: 15px;
   background-color: $primaryCOlor;
 
   nav{
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
 
     ul {
+      overflow: hidden;
       width: 90%;
       max-width: $maxContentSize;
       margin: 0 auto;
       display: flex;
       padding: 0;
-      height: 70px;
+      height: $navHeight;
 
       li {
         display: block;

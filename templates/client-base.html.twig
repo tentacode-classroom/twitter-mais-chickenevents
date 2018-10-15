@@ -2,10 +2,21 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block search %}
+{% block aside %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% include 'components/user-block.html.twig' with { 'user': app.user } %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
     <section class="search">
         <form action="{{ path( 'search' ) }}" method="get" class="b">
-            <input type="search" placeholder="Rechercher ..." required autocomplete="off" name="q">
+            {% if current_search is defined %}
+                <input type="search" placeholder="Rechercher ..." required autocomplete="off" name="q"
+                       value="{{ current_search }}">
+            {% else %}
+                <input type="search" placeholder="Rechercher ..." required autocomplete="off" name="q">
+            {% endif %}
             <button>
                 Rechercher
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -14,6 +25,6 @@
             </button>
         </form>
     </section>
-{% endblock %}
 
-{% block body %}<div></div>{% endblock %}
+    {% block content %}<div></div>{% endblock %}
+{% endblock %}

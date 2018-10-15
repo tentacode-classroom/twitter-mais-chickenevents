@@ -1,0 +1,25 @@
+{% extends 'client-base.html.twig' %}
+
+{% block title %}Recherche : “{{ current_search }}”{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>Résultats de recherche : “{{ current_search }}”</h1>
+    </section>
+    <section>
+        <h2>Utilisateurs</h2>
+        {% if search_users|length > 0 %}
+            {% include 'components/users-list.html.twig' with { 'users': search_users } %}
+        {% else %}
+            <p>Aucun utilisateurs trouvé</p>
+        {% endif %}
+    </section>
+    <section>
+        <h2>Posts</h2>
+        {% if search_posts|length > 0 %}
+            {% include 'components/posts-list.html.twig' with { 'posts': search_posts } %}
+        {% else %}
+            <p>Aucun post trouvé</p>
+        {% endif %}
+    </section>
+{% endblock %}

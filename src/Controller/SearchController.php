@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,14 +15,18 @@ class SearchController extends AbstractController
      */
     public function index( Request $request )
     {
-        $paramMessage = $request->get( 'q' );
+        $search = $request->get( 'q' );
 
-        $messages = $this->getDoctrine()->getRepository( Post::class )
-            ->findByString( $paramMessage );
-        dump($messages);
+        $posts = $this->getDoctrine()->getRepository( Post::class )
+            ->searchPosts( $search );
 
-        return $this->render('search.html.twig', [
-            'controller_name' => 'SearchController',
+        $users = $this->getDoctrine()->getRepository( User::class )
+            ->searchUsers( $search );
+
+        return $this->render('pages/search.html.twig', [
+            'search_posts'   =>  $posts,
+            'search_users'      =>  $users,
+            'current_search'            =>  $search
         ]);
     }
 }
