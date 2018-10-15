@@ -21,6 +21,7 @@ class RegistrationType extends AbstractType
             ->add('lastname')
             ->add('password',PasswordType::class)
             ->add('email', EmailType::class)
+            ->add( 'pseudo', TextType::class)
             ->add('birthDate', DateType::class)
             ->add("S'inscrire", SubmitType::class);
 
