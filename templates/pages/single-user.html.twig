@@ -8,12 +8,6 @@
     {% endif %}
 {% endblock %}
 
-{% block body %}
-    <section>
-        {% if user %}
-            {% include 'components/user-block.html.twig' %}
-        {% else %}
-            <h1>Utilisateur introuvable</h1>
-        {% endif %}
-    </section>
+{% block content %}
+    {% include '/components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
 {% endblock %}

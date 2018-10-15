@@ -3,7 +3,9 @@
 {% block title %}Accueil{% endblock %}
 
 {% block aside %}
-    {{ dump() }}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% include 'components/user-block.html.twig' with { 'user': app.user } %}
+    {% endif %}
 {% endblock %}
 
 {% block body %}

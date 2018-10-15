@@ -76,7 +76,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $username;
+    private $pseudo;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -262,11 +262,16 @@ class User implements UserInterface, \Serializable
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
-    public function setUsername(string $username): self
+    public function setPseudo(string $pseudo): self
     {
-        $this->username = $username;
+        $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
     }
 
     public function getPicture(): ?string
