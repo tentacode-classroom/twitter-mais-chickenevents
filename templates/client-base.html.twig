@@ -25,9 +25,11 @@
             </button>
         </form>
     </section>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     {{ render(controller(
         'App\\Controller\\PostNewController::index'
     )) }}
+    {% endif %}
 
     {% block content %}<div></div>{% endblock %}
 {% endblock %}

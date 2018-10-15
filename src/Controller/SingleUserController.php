@@ -9,19 +9,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class SingleUserController extends AbstractController
 {
     /**
-     * @Route("/user/{id}", name="single_user")
+     * @Route("/user/{pseudo}", name="single_user")
      */
-    public function index( $username = null )
+    public function index( $pseudo = null )
     {
-        if ( !isset($username) ) {
+        if ( !isset($pseudo) ) {
             return $this->render('pages/single-user.html.twig', [
                 'user'  =>  false
             ]);
         }
 
-        $user = $this->getDoctrine()->getRepository( User::class )->getUserByUserName( $username );
+        $user = $this->getDoctrine()->getRepository( User::class )->getUserByUserName( $pseudo );
         return $this->render('pages/single-user.html.twig', [
-            'user'  =>  $user
+            'user'  =>  $user[0]
         ]);
     }
 }
