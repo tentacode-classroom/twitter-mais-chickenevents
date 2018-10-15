@@ -25,6 +25,9 @@
             </button>
         </form>
     </section>
+    {{ render(controller(
+        'App\\Controller\\PostNewController::index'
+    )) }}
 
     {% block content %}<div></div>{% endblock %}
 {% endblock %}
