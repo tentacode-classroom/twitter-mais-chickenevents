@@ -1,5 +1,9 @@
 <section>
-    {{ form_start(form) }}
+    {{ form_start(form, {
+        'attr': {
+            'action': path( 'post_new' ) ~ '?redirect_url=' ~ app.request.uri
+        }
+    }) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
 </section>
