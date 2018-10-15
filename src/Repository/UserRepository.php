@@ -22,11 +22,10 @@ class UserRepository extends ServiceEntityRepository
     public function searchUsers(string $search)
     {
         return $this->createQueryBuilder('u')
-            ->where( 'u.firstname LIKE :search' )
-            ->setParameter( 'search', '%'.$search.'%' )
-            ->orWhere( 'u.lastname LIKE :search' )
-            ->setParameter( 'search', '%'.$search.'%' )
+            ->where( 'u.firstname LIKE :searchLike' )
+            ->orWhere( 'u.lastname LIKE :searchLike' )
             ->orWhere( 'u.email = :search' )
+            ->setParameter( 'searchLike', '%'.$search.'%' )
             ->setParameter( 'search', $search )
             ->getQuery()
             ->getResult();
@@ -35,7 +34,7 @@ class UserRepository extends ServiceEntityRepository
     public function getUserByUserName(string $username)
     {
         return $this->createQueryBuilder('u')
-            ->where( 'u.username = :username' )
+            ->where( 'u.pseudo = :username' )
             ->setParameter( 'username', $username )
             ->getQuery()
             ->getResult();

@@ -9,7 +9,7 @@
     </figure>
     <p>
         {{ user.firstname }} {{ user.lastname }}
-        <a href="{{ path( 'single_user', { 'id': user.pseudo }) }}">@{{ user.pseudo }}</a>
+        <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">@{{ user.pseudo }}</a>
     </p>
     <div class="user-block__details">
         <p>
