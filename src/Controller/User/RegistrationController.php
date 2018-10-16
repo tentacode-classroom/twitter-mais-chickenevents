@@ -14,7 +14,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/inscription", name="registration")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder)
+    public function index(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm( RegistrationType::class, $user);
@@ -24,15 +24,28 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
-//            $plainPassword = $user->getPassword();
-//            $encryptedPassword = $encoder->encodePassword($user, $plainPassword);
-//            $user->setPassword($encryptedPassword);
+            $plainPassword = $user->getPassword();
+            $encryptedPassword = $encoder->encodePassword($user, $plainPassword);
+            $user->setPassword($encryptedPassword);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('confirmation');
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom('chickenevent@gmail.com')
+                ->setTo('recipient@example.com')
+                ->setBody(
+                    $this->renderView(
+                    // templates/emails/registration.html.twig
+                        'emails/registration.html.twig',
+                        array('name' => $name)
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
+
+            return $this->redirectToRoute('home');
         }
         return $this->render('user/registration.html.twig', array(
             'form' => $form->createView(),

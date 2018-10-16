@@ -16,12 +16,17 @@ class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $dateBegin = date( 'Y' ) - 100;
+        $dateEnd = date( 'Y' ) - 13;
         $builder
             ->add('firstname')
             ->add('lastname')
             ->add('password',PasswordType::class)
             ->add('email', EmailType::class)
-            ->add('birthDate', DateType::class)
+            ->add('pseudo', TextType::class)
+            ->add('birthDate', DateType::class, array(
+                'years'=>range($dateBegin,$dateEnd)
+            ))
             ->add("S'inscrire", SubmitType::class);
 
     }
