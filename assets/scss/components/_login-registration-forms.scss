@@ -1,0 +1,77 @@
+body.login,
+body.registration {
+
+  form {
+    width: 100%;
+    max-width: 450px;
+    margin: 50px auto;
+
+
+    div.form-group:not(:last-of-type) {
+      margin: 0;
+      background-color: $white;
+      border-top-width: 0px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+      border-right-width: 1px;
+      border-style: solid;
+      border-color: $lightGray;
+      padding: 8px 13px;
+      position: relative;
+
+      &:first-of-type {
+        border-top-width: 1px;
+      }
+      &:nth-last-of-type(2) {
+        //border-bottom-width: 1px;
+      }
+
+      &::before {
+        content: '';
+        display: block;
+        background-color: $primaryColor;
+        width: 2px;
+        left: -1px;
+        top: -1px;
+        bottom: -1px;
+        transform: scaleY( 0 );
+        position: absolute;
+        transition: transform $transitionTime;
+      }
+
+      label {
+        margin: 0;
+        color: $veryHardBlack;
+        font-size: 16px;
+        display: block;
+        cursor: text;
+        transform: translateY( 10px );
+        height: 18px;
+        transition: color $transitionTime, font-size $transitionTime, transform $transitionTime;
+      }
+      input:not([type="hidden"]):not([type="submit"]), textarea {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        height: auto;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      &.form-group--defined,
+      &:focus-within {
+        label {
+          color: $gray;
+          font-size: 14px;
+          transform: translateY( 0 );
+        }
+        &::before {
+          transform: scaleY( 1 );
+        }
+      }
+    }
+  }
+}

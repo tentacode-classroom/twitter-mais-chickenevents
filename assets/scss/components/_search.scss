@@ -15,8 +15,8 @@ section.search {
     margin-right: auto;
 
     &:focus-within {
-      box-shadow: 0 0 0 5px rgba($primaryCOlor, .25);
-      border-color: $primaryCOlor;
+      box-shadow: 0 0 0 5px rgba($primaryColor, .25);
+      border-color: $primaryColor;
     }
     & > * {
       border: 0;
@@ -58,7 +58,7 @@ section.search {
 
       &:hover {
         svg {
-          fill: $primaryCOlor;
+          fill: $primaryColor;
         }
       }
     }

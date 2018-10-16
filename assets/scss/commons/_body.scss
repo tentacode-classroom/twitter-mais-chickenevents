@@ -4,6 +4,7 @@ body {
   display: flex;
   background-color: $lightGray;
   flex-direction: column;
+  min-height: 100vh;
 
   section.container {
     width: 90%;
@@ -13,6 +14,7 @@ body {
     grid-template-columns: 27fr 63fr ;
     grid-column-gap: 6px;
     padding: 0;
+    min-height: 100%;
 
     & > * {
       overflow: hidden;
