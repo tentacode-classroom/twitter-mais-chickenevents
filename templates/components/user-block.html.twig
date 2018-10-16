@@ -21,4 +21,8 @@
             {#<span>{{ dump(user) }}</span>#}
         </p>
     </div>
+
+    {% if app.user.id != user.id %}
+        {% include 'components/follow-button.html.twig' %}
+    {% endif %}
 </div>
