@@ -1,4 +1,4 @@
-export default class FormMaterial {
+class FormMaterial {
 
     constructor(selector) {
         this.class = selector.replace('.', '') + '--active'
@@ -71,3 +71,5 @@ class InputMaterial {
         this.parent.classList.remove(this.inputClassDefined)
     }
 }
+
+export { FormMaterial }
