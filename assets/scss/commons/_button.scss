@@ -1,0 +1,39 @@
+a.btn:not(.disabled),
+a.btn:not(:disabled),
+button {
+  background-color: $primaryColor;
+  border: 1px solid rgba( $primaryColor, 0 );
+  transition: box-shadow $transitionTime,
+        border-color $transitionTime;
+  cursor: pointer;
+  color: $white;
+
+  &:focus-within {
+    box-shadow: 0 0 0 5px rgba($primaryColor, .25);
+    border-color: $primaryColor;
+  }
+
+  &.send-button {
+    font-size: 0;
+    color: rgba($white, 0);
+    background: none;
+    cursor: pointer;
+    border: none;
+
+    svg {
+      fill: $primaryColor;
+      transition: fill $transitionTime $easeInOutQuart;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      box-shadow: none;
+      outline: none;
+
+      svg {
+        fill: $darkPrimarycolor;
+      }
+    }
+  }
+}

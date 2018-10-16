@@ -84,19 +84,21 @@ class User implements UserInterface, \Serializable
     private $picture;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Follow", mappedBy="follower", cascade={"persist", "remove"})
-     */
-    private $followers;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Follow", mappedBy="following", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="follower", orphanRemoval=true)
      */
     private $followings;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Follow", mappedBy="following", orphanRemoval=true)
+     */
+    private $followers;
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->postsTimeline = new ArrayCollection();
+        $this->followings = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -296,35 +298,63 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getFollowers(): ?Follow
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowings(): Collection
     {
-        return $this->followers;
+        return $this->followings;
     }
 
-    public function setFollowers(Follow $followers): self
+    public function addFollowing(Follow $following): self
     {
-        $this->followers = $followers;
-
-        // set the owning side of the relation if necessary
-        if ($this !== $followers->getFollower()) {
-            $followers->setFollower($this);
+        if (!$this->followings->contains($following)) {
+            $this->followings[] = $following;
+            $following->setFollower($this);
         }
 
         return $this;
     }
 
-    public function getFollowings(): ?Follow
+    public function removeFollowing(Follow $following): self
     {
-        return $this->followings;
+        if ($this->followings->contains($following)) {
+            $this->followings->removeElement($following);
+            // set the owning side to null (unless already changed)
+            if ($following->getFollower() === $this) {
+                $following->setFollower(null);
+            }
+        }
+
+        return $this;
     }
 
-    public function setFollowings(Follow $followings): self
+    /**
+     * @return Collection|Follow[]
+     */
+    public function getFollowers(): Collection
     {
-        $this->followings = $followings;
+        return $this->followers;
+    }
 
-        // set the owning side of the relation if necessary
-        if ($this !== $followings->getFollowing()) {
-            $followings->setFollowing($this);
+    public function addFollower(Follow $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+            $follower->setFollowing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(Follow $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+            // set the owning side to null (unless already changed)
+            if ($follower->getFollowing() === $this) {
+                $follower->setFollowing(null);
+            }
         }
 
         return $this;

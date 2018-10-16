@@ -4,13 +4,13 @@
 
 {% block aside %}
     {#{% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
-        {% include 'components/user-block.html.twig' with { 'user': app.user } %}
+    {% include 'components/user-block.html.twig' with { 'user': app.user } %}
     {#{% endif %}#}
 {% endblock %}
 
 {% block body %}
-    <section class="search">
-        <form action="{{ path( 'search' ) }}" method="get" class="b">
+    <section>
+        <form action="{{ path( 'search' ) }}" method="get" class="search">
             {% if current_search is defined %}
                 <input type="search" placeholder="Rechercher ..." required autocomplete="off" name="q"
                        value="{{ current_search }}">
@@ -24,12 +24,14 @@
                 </svg>
             </button>
         </form>
-    </section>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    {{ render(controller(
-        'App\\Controller\\PostNewController::index'
-    )) }}
-    {% endif %}
 
-    {% block content %}<div></div>{% endblock %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ render(controller(
+                'App\\Controller\\PostNewController::index'
+            )) }}
+        {% endif %}
+    </section>
+
+    {% block content %}
+        <div></div>{% endblock %}
 {% endblock %}

@@ -33,6 +33,7 @@
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^3.2.0",
     "img-loader": "^3.0.0",
+    "jquery": "^3.3.1",
     "meyer-reset-sass": "^1.0.1",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.5",
