@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les informations d'inscription{% endblock %}
+
+{% block body %}
+    <h1>Inscription</h1>
+    <div class="editer">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

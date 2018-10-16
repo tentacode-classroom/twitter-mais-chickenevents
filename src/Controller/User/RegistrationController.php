@@ -14,7 +14,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/inscription", name="registration")
      */
-    public function index(Request $request, UserPasswordEncoderInterface $encoder)
+    public function index(Request $request, UserPasswordEncoderInterface $encoder, \Swift_Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm( RegistrationType::class, $user);
@@ -31,6 +31,19 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $message = (new \Swift_Message('Hello Email'))
+                ->setFrom('chickenevent@gmail.com')
+                ->setTo('recipient@example.com')
+                ->setBody(
+                    $this->renderView(
+                    // templates/emails/registration.html.twig
+                        'emails/registration.html.twig',
+                        array('name' => $name)
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
 
             return $this->redirectToRoute('home');
         }

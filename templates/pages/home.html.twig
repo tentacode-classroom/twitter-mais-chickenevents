@@ -5,5 +5,9 @@
 {% block content %}
     <section>
         {% include 'components/post-form.html.twig' with { 'form': form } %}
+        {{ dump(app.request.attributes.get('HTTP_REFERER')) }}
     </section>
+{% endblock %}
+{%  block aside %}
+
 {% endblock %}
