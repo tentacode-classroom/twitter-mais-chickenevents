@@ -3,10 +3,10 @@ $navHeight: 50px;
 body > header  {
   width: 100%;
   margin-bottom: 15px;
-  background-color: $primaryCOlor;
+  background-color: $primaryColor;
 
   nav{
-    box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+    box-shadow: 2px 4px 10px rgba(0,0,0,.2);
 
     ul {
       overflow: hidden;
