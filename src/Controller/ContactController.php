@@ -43,7 +43,7 @@ class ContactController extends AbstractController
 
         if (isset($subject)) {
             $message = (new \Swift_Message($subject))
-                ->setFrom('contactsymfony@gmail.com')
+                ->setFrom('chickenevent@gmail.com')
                 ->setTo($email)
                 ->setContentType('text/html')
                 ->setBody(
