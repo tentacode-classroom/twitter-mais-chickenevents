@@ -54,7 +54,6 @@ class InputMaterial {
     checkValue = (input) => {
         const value = input.value
 
-        console.log(input.value)
         if (value === '') {
             this.undefineParent()
         }

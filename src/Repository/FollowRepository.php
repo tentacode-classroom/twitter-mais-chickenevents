@@ -18,6 +18,16 @@ class FollowRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Follow::class);
     }
+    public function findOneFollow(int $followerid, int $followingid)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.follower = :follower')
+            ->setParameter('follower', $followerid)
+            ->andWhere('f.following = :following')
+            ->setParameter('following', $followingid)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Follow[] Returns an array of Follow objects
