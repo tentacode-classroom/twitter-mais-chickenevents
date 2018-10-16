@@ -1,14 +1,12 @@
-section.search {
-  form {
+form.search {
     width: 100%;
     background-color: $white;
-    border-radius: 40px;
     border: 1px solid rgba( $white, 0 );
     height: 40px;
     display: flex;
     align-items: center;
     padding: 0 20px;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,.15);
+    box-shadow: $shadow;
     transition: box-shadow $transitionTime,
                 border-color $transitionTime;
     margin-left: auto;
@@ -63,4 +61,3 @@ section.search {
       }
     }
   }
-}

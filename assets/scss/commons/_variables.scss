@@ -7,8 +7,14 @@ $hardBlack: #4E4E4E;
 $veryHardBlack: #292929;
 $black: #000000;
 
-$primaryColor: #1565C0;
+$shadow: 0 0 2px 0 rgba(0, 0, 0, .1);
+
+//$primaryColor: #1565C0;
+$primaryColor: #15bac0;
+//$primaryColor: #15c070;
+$darkPrimarycolor: darken( $primaryColor, 20% );
+$secondaryColor: #c01b15;
 
 $transitionTime: .4s;
 
-$maxContentSize: 1000px;
+$maxContentSize: 1100px;

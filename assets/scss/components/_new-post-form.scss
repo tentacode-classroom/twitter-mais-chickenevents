@@ -1,0 +1,31 @@
+form.new-post {
+  background-color: $white;
+  box-shadow: $shadow;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+
+  & > div {
+    width: 100%;
+    margin-right: 10px;
+
+    .form-group {
+      margin: 0;
+
+      label {
+        display: none;
+      }
+      textarea {
+        border: 0;
+        background: none;
+        resize: none;
+        height: 100px;
+        color: $veryHardBlack;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
