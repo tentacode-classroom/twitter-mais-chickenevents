@@ -1,7 +1,7 @@
 <section class="posts-list">
     {% for post in posts %}
         <article class="post">
-            <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }} <span>@{{ user.pseudo }}</span></p>
+            <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }} <span>@{{ post.user.pseudo }}</span></p>
             <p class="post__message">{{ post.message }}</p>
             <time>{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
         </article>
