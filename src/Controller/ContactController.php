@@ -55,7 +55,7 @@ class ContactController extends AbstractController
             $mailer->send($message);
         }
 
-        return $this->render("contact/index.html.twig", array(
+        return $this->render("contact/user-followers.twig", array(
             'form' => $form->createView(),
         ));
     }

@@ -13,7 +13,7 @@ class AjaxButton {
 class Button {
   constructor ( button ) {
     this.button = button
-    this.url = this.button.getAttribute( 'ajax-url' )
+    this.url = this.href
 
     this.button.addEventListener( 'click', (e) => {
       e.preventDefault()

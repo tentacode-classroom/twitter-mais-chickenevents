@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Post;
 
 
 use App\Entity\Post;
@@ -20,6 +20,7 @@ class RePostController extends AbstractController
     {
 
         $post = new Post();
+
         if($post->isSubmit()){
             $post->setUser( $user );
             $post->addUserTimeline( $user );

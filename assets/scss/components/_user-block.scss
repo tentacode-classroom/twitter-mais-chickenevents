@@ -85,7 +85,8 @@
       line-height: 1.1;
       box-shadow: $shadow;
 
-      span {
+      span,
+      a {
         display: block;
         color: $primaryColor;
         font-size: 18px;
