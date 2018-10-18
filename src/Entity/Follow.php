@@ -17,13 +17,13 @@ class Follow
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="followers", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="followings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $follower;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="followings", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="followers")
      * @ORM\JoinColumn(nullable=false)
      */
     private $following;
@@ -38,7 +38,7 @@ class Follow
         return $this->follower;
     }
 
-    public function setFollower(User $follower): self
+    public function setFollower(?User $follower): self
     {
         $this->follower = $follower;
 
@@ -50,7 +50,7 @@ class Follow
         return $this->following;
     }
 
-    public function setFollowing(User $following): self
+    public function setFollowing(?User $following): self
     {
         $this->following = $following;
 

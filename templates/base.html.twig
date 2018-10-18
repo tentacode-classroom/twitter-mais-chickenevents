@@ -5,31 +5,50 @@
     <title>{% block title %}Accueil{% endblock %} - Chicken Events</title>
     <link rel="stylesheet" href="/dist/{{ asset( 'main.css' ) }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/img/logo.png" />
 </head>
 <body class="{% block body_class %}body{% endblock %}">
 <header>
     <nav>
         <ul>
-
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a href="{{ path( 'login' ) }}">Connexion</a></li>
+                <li>
+                    <a href="{{ path( 'login' ) }}">
+                        Connexion
+
+                    </a>
+                </li>
                 <li><a href="{{ path( 'registration' ) }}">Inscription</a></li>
             {% else %}
-                <li><a href="{{ path('home') }}">Accueil</a></li>
-                <li><a href="{{ path( 'logout' ) }}">Déconnexion</a></li>
-                <li><a href="{{ path( 'profileEdit' ) }}">Profil</a></li>
+                <li>
+                    <a href="{{ path('home') }}">
+                        Accueil
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path( 'logout' ) }}">
+                        Déconnexion
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"/>
+                        </svg>
+                    </a>
+                </li>
             {% endif %}
-            <li><a href="{{ path( 'contact' ) }}">Contact</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="container">
     <aside>
-        {% block aside %}<div></div>{% endblock %}
+        {% block aside %}
+            <div></div>{% endblock %}
     </aside>
     <main>
-        {% block body %}<div></div>{% endblock %}
+        {% block body %}
+            <div></div>{% endblock %}
     </main>
 </section>
 

@@ -1,4 +1,4 @@
-export default class FormMaterial {
+class FormMaterial {
 
     constructor(selector) {
         this.class = selector.replace('.', '') + '--active'
@@ -54,7 +54,6 @@ class InputMaterial {
     checkValue = (input) => {
         const value = input.value
 
-        console.log(input.value)
         if (value === '') {
             this.undefineParent()
         }
@@ -72,3 +71,5 @@ class InputMaterial {
         this.parent.classList.remove(this.inputClassDefined)
     }
 }
+
+export { FormMaterial }

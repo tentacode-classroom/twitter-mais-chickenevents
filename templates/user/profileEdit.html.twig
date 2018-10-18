@@ -1,12 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'client-base.html.twig' %}
 
 {% block title %}Modifier les informations d'inscription{% endblock %}
 
 {% block body %}
     <h1>Votre Profil</h1>
-    <div class="profileEdit">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        {{ form_end(form) }}
-    </div>
+    {{ form_start(form, {
+        'attr': {
+            'class': 'js_form'
+        }
+    }) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
 {% endblock %}

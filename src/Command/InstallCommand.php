@@ -17,36 +17,11 @@ class InstallCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Install the project')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-            ->setHelp('This command allows you to create a user...');
+            ->setDescription('Install the project');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $command = $this->getApplication()->find('demo:greet');
-
-        $arguments = array(
-            'command' => 'demo:greet',
-            'name' => 'Fabien',
-            '--yell' => true,
-        );
-
-        $greetInput = new ArrayInput($arguments);
-        $returnCode = $command->run($greetInput, $output);
-
-//        $io = new SymfonyStyle($input, $output);
-//        $arg1 = $input->getArgument('arg1');
-//
-//        if ($arg1) {
-//            $io->note(sprintf('You passed an argument: %s', $arg1));
-//        }
-//
-//        if ($input->getOption('option1')) {
-//            // ...
-//        }
-//
-//        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $output->writeln("maxence t moche");
     }
 }

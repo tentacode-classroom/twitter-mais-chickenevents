@@ -1,24 +1,42 @@
 <div class="user-block">
-    <figure>
-        {% if user.picture %}
-            <img src="{{ user.picture }}" alt="photo de {{ user.username }}">
-        {% else %}
-            <img src="https://static3.7sur7.be/static/photo/2016/12/6/6/20160104164613/media_xll_8288781.jpg"
-                 alt="photo de {{ user.username }}">
-        {% endif %}
-    </figure>
-    <p>
-        {{ user.firstname }} {{ user.lastname }}
-        <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">@{{ user.pseudo }}</a>
-    </p>
     <div class="user-block__details">
+        <figure>
+            {% if user.picture %}
+                <img src="{{ user.picture }}" alt="photo de {{ user.username }}">
+            {% else %}
+                <img src="https://static3.7sur7.be/static/photo/2016/12/6/6/20160104164613/media_xll_8288781.jpg"
+                     alt="photo de {{ user.username }}">
+            {% endif %}
+        </figure>
+
+        <div class="user-block__details__names">
+            <p>{{ user.firstname }} {{ user.lastname }}</p>
+            <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">@{{ user.pseudo }}</a>
+        </div>
+
+        {% if app.user.id != user.id %}
+            {% include 'components/follow-button.html.twig' with { 'user': user } %}
+        {% else %}
+            <a class="user-block__details__edit" href="{{ path( 'profileEdit' ) }}">
+                Settings
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <path d="M15.95 10.78c.03-.25.05-.51.05-.78s-.02-.53-.06-.78l1.69-1.32c.15-.12.19-.34.1-.51l-1.6-2.77c-.1-.18-.31-.24-.49-.18l-1.99.8c-.42-.32-.86-.58-1.35-.78L12 2.34c-.03-.2-.2-.34-.4-.34H8.4c-.2 0-.36.14-.39.34l-.3 2.12c-.49.2-.94.47-1.35.78l-1.99-.8c-.18-.07-.39 0-.49.18l-1.6 2.77c-.1.18-.06.39.1.51l1.69 1.32c-.04.25-.07.52-.07.78s.02.53.06.78L2.37 12.1c-.15.12-.19.34-.1.51l1.6 2.77c.1.18.31.24.49.18l1.99-.8c.42.32.86.58 1.35.78l.3 2.12c.04.2.2.34.4.34h3.2c.2 0 .37-.14.39-.34l.3-2.12c.49-.2.94-.47 1.35-.78l1.99.8c.18.07.39 0 .49-.18l1.6-2.77c.1-.18.06-.39-.1-.51l-1.67-1.32zM10 13c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/>
+                </svg>
+            </a>
+        {% endif %}
+    </div>
+    <div class="user-block__counters">
         <p>
-            Posts
             <span>{{ user.postsTimeline|length }}</span>
+            Posts
         </p>
         <p>
+            <span>{{ user.followers|length }}</span>
             Abonnés
-            {#<span>{{ dump(user) }}</span>#}
+        </p>
+        <p>
+            <span>{{ user.followings|length }}</span>
+            Abonnements
         </p>
     </div>
 </div>

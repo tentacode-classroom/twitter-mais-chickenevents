@@ -14,8 +14,16 @@ class PostNewType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('message', TextareaType::class)
-            ->add( 'Publier', SubmitType::class)
+            ->add('message', TextareaType::class, [
+                'attr'  =>  [
+                    'placeholder'   =>  'Ecrivez votre post'
+                ]
+            ])
+//            ->add( 'Publier', SubmitType::class, [
+//                'attr'  =>  [
+//                    'class' =>  'send-button'
+//                ]
+//            ])
         ;
     }
 
