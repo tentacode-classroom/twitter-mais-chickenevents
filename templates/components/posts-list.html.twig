@@ -1,6 +1,9 @@
 <section class="posts-list">
     {% for post in posts %}
         <article class="post">
+            {% if post.user.id != app.user.id %}
+                {% include 'components/repost-button.html.twig' with { 'post': post } %}
+            {% endif %}
             <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }} <span>@{{ post.user.pseudo }}</span></p>
             <p class="post__message">{{ post.message }}</p>
             <time>{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
