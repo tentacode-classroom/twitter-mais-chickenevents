@@ -2,7 +2,7 @@
 
 {% block title %}
     {% if user %}
-        {{ user.firstname }} {{ user.lastname }}
+        @{{ user.pseudo }}
     {% else %}
         Utilisateur introuvable
     {% endif %}

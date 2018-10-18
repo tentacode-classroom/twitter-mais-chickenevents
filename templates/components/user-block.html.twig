@@ -31,11 +31,11 @@
             Posts
         </p>
         <p>
-            <span>{{ user.followers|length }}</span>
+            <a href="{{ path('user_followers', { 'pseudo': user.pseudo }) }}">{{ user.followers|length }}</a>
             Abonnés
         </p>
         <p>
-            <span>{{ user.followings|length }}</span>
+            <a href="{{ path('user_followings', { 'pseudo': user.pseudo }) }}">{{ user.followings|length }}</a>
             Abonnements
         </p>
     </div>

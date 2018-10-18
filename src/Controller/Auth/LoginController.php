@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\User;
+namespace App\Controller\Auth;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +20,7 @@ class LoginController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ( $this->isGranted( 'IS_AUTHENTICATED_REMEMBERED' ) ) {
-            return $this->redirectToRoute( 'home_page' );
+            return $this->redirectToRoute( 'home' );
         }
 
         return $this->render('user/login.html.twig', array(
