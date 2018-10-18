@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Form\profileEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,7 +31,7 @@ class ProfileEditController extends AbstractController
             $entityManager->flush();
         }
 
-            return $this->render('user/RePost.html.twig', [
+            return $this->render('user/profile-edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }

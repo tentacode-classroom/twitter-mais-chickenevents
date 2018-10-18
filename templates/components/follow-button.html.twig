@@ -1,5 +1,5 @@
 {% if app.user|is_following(user) %}
-    <button type="button" class="follow-button unfollow" ajax-url="{{ path('follow', { 'followingId': user.id }) }}">Désuivre</button>
+    <a class="follow-button unfollow btn" href="{{ path('follow', { 'followingId': user.id }) }}">Désuivre</a>
 {% else %}
-    <button type="button" class="follow-button follow" ajax-url="{{ path('follow', { 'followingId': user.id }) }}">Suivre</button>
+    <a class="follow-button follow btn" href="{{ path('follow', { 'followingId': user.id }) }}">Suivre</a>
 {% endif %}
