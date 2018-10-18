@@ -22,7 +22,7 @@ class UserFollowingsController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->getUserByUserName($pseudo);
 
         return $this->render('user/user-followings.twig', [
-            'user' => $user[0]
+            'user' => $user
         ]);
     }
 }
