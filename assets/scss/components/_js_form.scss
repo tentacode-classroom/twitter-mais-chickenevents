@@ -9,7 +9,7 @@ form.js_form {
     border-left-width: 1px;
     border-right-width: 1px;
     border-style: solid;
-    border-color: $lightGray;
+    border-color: $lightGrey;
     padding: 8px 13px;
     position: relative;
 
@@ -58,7 +58,7 @@ form.js_form {
     &.form-group--defined,
     &:focus-within {
       label {
-        color: $gray;
+        color: $grey;
         font-size: 14px;
         transform: translateY(0);
       }

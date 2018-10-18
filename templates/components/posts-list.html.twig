@@ -4,9 +4,11 @@
             {% if post.user.id != app.user.id %}
                 {% include 'components/repost-button.html.twig' with { 'post': post } %}
             {% endif %}
-            <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }} <span>@{{ post.user.pseudo }}</span></p>
+            <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }}
+                <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
+            </p>
             <p class="post__message">{{ post.message }}</p>
-            <time>{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
+            <time class="post__message__date">{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
         </article>
     {% endfor %}
 </section>
