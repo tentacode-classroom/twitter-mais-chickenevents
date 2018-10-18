@@ -27,8 +27,10 @@
     </div>
     <div class="user-block__counters">
         <p>
+            <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">
             <span>{{ user.postsTimeline|length }}</span>
             Posts
+            </a>
         </p>
         <p>
             <a href="{{ path('user_followers', { 'pseudo': user.pseudo }) }}">{{ user.followers|length }}</a>

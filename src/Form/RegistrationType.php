@@ -27,7 +27,7 @@ class RegistrationType extends AbstractType
             ->add('birthDate', DateType::class, array(
                 'years'=>range($dateBegin,$dateEnd)
             ))
-            ->add("S'inscrire", SubmitType::class);
+            ->add("Register", SubmitType::class);
 
     }
 

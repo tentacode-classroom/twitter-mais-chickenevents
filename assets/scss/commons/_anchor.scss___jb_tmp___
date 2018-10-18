@@ -1,7 +1,0 @@
-a{
-  color: $primaryColor;
-  transition: color $transitionTime $easeInOutQuart;
-}
-a:hover{
-  color: $darkPrimarycolor;
-}
