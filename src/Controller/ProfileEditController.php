@@ -31,7 +31,7 @@ class ProfileEditController extends AbstractController
             $entityManager->flush();
         }
 
-            return $this->render('user/profileEdit.html.twig', [
+            return $this->render('user/RePost.html.twig', [
             'form' => $form->createView(),
         ]);
     }

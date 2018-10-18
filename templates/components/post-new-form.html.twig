@@ -1,9 +1,14 @@
-<section>
-    {{ form_start(form, {
-        'attr': {
-            'action': path( 'post_new' ) ~ '?redirect_url=' ~ app.request.uri
-        }
-    }) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-</section>
+{{ form_start(form, {
+    'attr': {
+        'action': path( 'post_new' ) ~ '?redirect_url=' ~ app.request.uri,
+        'class': 'new-post'
+    }
+}) }}
+{{ form_widget(form) }}
+<button class="send-button">
+    Publier
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+    </svg>
+</button>
+{{ form_end(form) }}

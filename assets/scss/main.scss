@@ -1,12 +1,18 @@
 @import "~bootstrap/scss/bootstrap";
 
+@import "commons/ease";
+@import "commons/media-query";
 @import "commons/variables";
 @import "commons/body";
 @import "commons/navbar";
+@import "commons/button";
+@import "commons/form";
 
 @import "components/search";
 @import "components/user-block";
 @import "components/posts-list";
-@import "components/login-registration-forms";
+@import "components/js_form";
+@import "components/new-post-form";
+@import "components/user-list";
 
 @import "layouts/login-registration";
