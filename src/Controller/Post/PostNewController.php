@@ -3,7 +3,7 @@
 namespace App\Controller\Post;
 
 use App\Entity\Post;
-use App\Form\PostNewType;
+use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +17,7 @@ class PostNewController extends AbstractController
     public function index(Request $request, UserInterface $user)
     {
         $post = new Post();
-        $form = $this->createForm( PostNewType::class, $post );
+        $form = $this->createForm( PostType::class, $post );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

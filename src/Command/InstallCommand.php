@@ -22,6 +22,6 @@ class InstallCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln("maxence t moche");
+        $output->writeln("maxence");
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Controller\Post;
 
-
+use App\Entity\Follow;
 use App\Entity\Post;
+use Symfony\Component\HttpFoundation\Response;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,27 +13,28 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 
 
+
 class RePostController extends AbstractController
 {
     /**
-     * @Route("/", name="re_post")
+     * @Route("/repost/{postId}", name="re_post")
      */
-    public function index(Request $request, UserInterface $user)
+    public function index(Request $request, UserInterface $user, $postId)
     {
+        $manager = $this->getDoctrine()->getManager();
 
-        $post = new Post();
+        $post = $this->getDoctrine()->getRepository(Post::class)
+            ->find($postId);
 
-        if($post->isSubmit()){
-            $post->setUser( $user );
+        if( in_array( $user, $post->getUserTimeline()->toArray() ) ) {
+            $post->removeUserTimeline( $user );
+        } else {
             $post->addUserTimeline( $user );
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
         }
 
-        return $this->render('components/RePost.html.twig', [
-            '' => '',
-        ]);
+        $manager->persist( $post );
+        $manager->flush();
+
+        return $this->redirectToRoute('home');
     }
 }

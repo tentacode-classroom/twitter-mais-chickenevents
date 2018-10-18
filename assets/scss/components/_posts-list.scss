@@ -10,9 +10,16 @@ section.posts-list {
 
     &__user-name {
 
+
+      &__nickname{
+
+      }
     }
     &__message {
 
+      &__date{
+        color:$grey;
+      }
     }
   }
 }
