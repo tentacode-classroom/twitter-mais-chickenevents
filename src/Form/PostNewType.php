@@ -23,8 +23,8 @@ class PostNewType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'attr' => [
-                    'class' => 'post-media'
-                ]
+                    'class' => 'post-media',
+                ],
             ])
 
 //            ->add( 'Publier', SubmitType::class, [
