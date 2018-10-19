@@ -27,6 +27,9 @@ form.new-post {
           box-shadow: none;
         }
       }
+      .post-media + label{
+        display: block;
+      }
     }
   }
 }

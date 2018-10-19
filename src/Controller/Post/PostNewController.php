@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class PostNewController extends AbstractController
@@ -27,6 +28,17 @@ class PostNewController extends AbstractController
 
             $post = $form->getData();
 
+            /**
+             * @var UploadedFile $file
+             */
+            $picture=$post->getPicture();
+            $pictureFileName= md5(uniqid()).'.'.$picture->guessExtension();
+            $picture->move(
+                $this->getParameter('pictures_directory'), $pictureFileName
+            );
+
+            $post->setPictureFilename($pictureFileName);
+
             $post->setUser( $user );
             $post->addUserTimeline( $user );
 
@@ -41,5 +53,10 @@ class PostNewController extends AbstractController
             'form'  =>  $form->createView(),
             'redirect_url'  =>  $requestStack->getMasterRequest()->getPathInfo()
         ]);
+    }
+
+    public function showPicture(){
+        $post=$this->getDoctrine()->getRepository('Post')->find('1');
+        return $this->render('components/post-new-form.html.twig',array('post'=>$post));
     }
 }
