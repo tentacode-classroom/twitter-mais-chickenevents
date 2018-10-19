@@ -26,7 +26,7 @@ class FollowRepository extends ServiceEntityRepository
             ->andWhere('f.following = :following')
             ->setParameter('following', $followingid)
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
 //    /**
