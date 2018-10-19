@@ -36,11 +36,13 @@ class Post
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsTimeline")
+     * @ORM\JoinTable(name="user_timeline")
      */
     private $userTimeline;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsLike")
+     * @ORM\JoinTable(name="user_likes")
      */
     private $likes;
 

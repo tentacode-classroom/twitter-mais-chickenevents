@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -28,10 +29,15 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getFollowings(int $userId)
+    public function getFollowingsPosts(User $user)
     {
         return $this->createQueryBuilder( 'p' )
-
+            ->join( 'p.userTimeline', 'ut' )
+            ->join( 'ut.followers', 'f')
+            ->join( 'f.follower', 'follower')
+            ->where( 'follower = :user')
+            ->setParameter( 'user', $user )
+            ->orderBy( 'p.dateCreated', 'DESC')
             ->getQuery()
             ->getResult();
     }

@@ -52,6 +52,7 @@ button {
     svg {
       fill: $grey;
       height: 20px;
+      transition: fill $transitionTime $easeInOutQuart;
     }
 
     &[action="stop-repost"],

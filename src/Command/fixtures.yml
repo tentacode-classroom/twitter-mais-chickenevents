@@ -1,0 +1,23 @@
+App\Entity\User:
+  User{1..20}:
+    firstname: '<fr_FR:firstName()>'
+    lastname: '<fr_FR:lastName()>'
+    password: 'azertyuiop'
+    email: '<email()>'
+    birthDate: '<date_create()>'
+    pseudo: '$firstname$lastname'
+    picture: '<imageUrl(500, 500)>'
+
+App\Entity\Post:
+  Post{1..300}:
+    dateCreated: '<date_create()>'
+    message: '<fr_FR:realText(200)>'
+    user: '@User*'
+    userTimeline: ['@User<numberBetween(1, 20)>', '@User<numberBetween(1, 20)>', '@User<numberBetween(1, 20)>']
+#App\Entity\Country:
+#  Country{1..23}:
+#    name: '<country()>'
+#
+#App\Entity\UserTag:
+#  UserTag{1..50}:
+#    name: '<languageCode()>'
