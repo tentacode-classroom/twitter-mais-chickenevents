@@ -10,6 +10,7 @@
 
 {% block body %}
     <section>
+        <i class="fas fa-calendar-alt"></i>
         <form action="{{ path( 'search' ) }}" method="get" class="search">
             {% if current_search is defined %}
                 <input type="search" placeholder="Rechercher ..." required autocomplete="off" name="q"

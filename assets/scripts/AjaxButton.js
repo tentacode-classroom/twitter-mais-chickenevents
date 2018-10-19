@@ -124,4 +124,27 @@ class RePostButton extends ActionButton {
   }
 }
 
-export { AjaxFollowButton, AjaxRePostButton, AjaxActionButton }
+class AjaxLikeButton extends AjaxButton{
+  constructor (buttonSelector) {
+    super(buttonSelector)
+  }
+
+  newClass(button) {
+    new LikeButton(button)
+  }
+}
+class LikeButton extends ActionButton{
+  constructor (button) {
+    super(button)
+  }
+
+  ajaxSuccess(response) {
+    if (this.button.getAttribute( 'action' ) === 'like' ) {
+      this.button.setAttribute( 'action', 'unlike' )
+    } else {
+      this.button.setAttribute( 'action', 'like' )
+    }
+  }
+}
+
+export { AjaxFollowButton, AjaxRePostButton, AjaxLikeButton }

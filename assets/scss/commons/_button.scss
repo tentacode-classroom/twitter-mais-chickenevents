@@ -2,10 +2,10 @@ a.btn:not(.disabled),
 a.btn:not(:disabled),
 button {
   background-color: $primaryColor;
-  border: 1px solid rgba( $primaryColor, 0 );
+  border: 1px solid rgba($primaryColor, 0);
   transition: box-shadow $transitionTime,
-        border-color $transitionTime,
-        background-color $transitionTime;
+  border-color $transitionTime,
+  background-color $transitionTime;
   cursor: pointer;
   color: $white;
 
@@ -13,9 +13,6 @@ button {
     box-shadow: 0 0 0 5px rgba($primaryColor, .25);
     border-color: $primaryColor;
   }
-
-
-
 
   &.send-button {
     font-size: 0;
@@ -41,17 +38,27 @@ button {
     }
   }
   &.follow-button {
-    min-width: 85px;
-
     &[action="unfollow"] {
       background-color: $darkPrimarycolor;
     }
   }
 
-  &.repost-button {
+  &.repost-button,
+  &.like-button {
+    background: none;
+    border: none;
+    box-shadow: none;
 
-    &[action="stop-repost"] {
-      background-color: $darkPrimarycolor;
+    svg {
+      fill: $grey;
+      height: 20px;
+    }
+
+    &[action="stop-repost"],
+    &[action="unlike"] {
+      svg {
+        fill: $darkPrimarycolor;
+      }
     }
   }
 }
