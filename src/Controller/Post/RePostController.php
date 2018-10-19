@@ -12,8 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-
-
 class RePostController extends AbstractController
 {
     /**
@@ -21,18 +19,21 @@ class RePostController extends AbstractController
      */
     public function index(Request $request, UserInterface $user, $postId)
     {
+        $action = $request->get('action');
         $manager = $this->getDoctrine()->getManager();
 
         $post = $this->getDoctrine()->getRepository(Post::class)
             ->find($postId);
 
-        if( in_array( $user, $post->getUserTimeline()->toArray() ) ) {
-            $post->removeUserTimeline( $user );
+        if ($action === 'stop-repost' && in_array($user, $post->getUserTimeline()->toArray())) {
+            $post->removeUserTimeline($user);
+        } else if ($action === 'repost' && !in_array($user, $post->getUserTimeline()->toArray())) {
+            $post->addUserTimeline($user);
         } else {
-            $post->addUserTimeline( $user );
+            return new Response( 'Error', 400 );
         }
 
-        $manager->persist( $post );
+        $manager->persist($post);
         $manager->flush();
 
         return $this->redirectToRoute('home');

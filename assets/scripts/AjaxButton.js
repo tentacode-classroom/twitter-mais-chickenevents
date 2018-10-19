@@ -20,13 +20,16 @@ class Button {
 
     this.button.addEventListener('click', (e) => {
       e.preventDefault()
+      this.ajax()
+    })
+  }
 
-      $.ajax({
-        url: this.url,
-        success: (response) => {
-          this.ajaxSuccess(response)
-        }
-      })
+  ajax() {
+    $.ajax({
+      url: this.url,
+      success: (response) => {
+        this.ajaxSuccess(response)
+      }
     })
   }
 
@@ -48,7 +51,6 @@ class FollowButton extends Button {
   constructor (button) {
     super(button)
 
-
     let parent = this.button
     while ( !parent.classList.contains( 'user-block' ) ) {
       parent = parent.parentElement
@@ -59,16 +61,20 @@ class FollowButton extends Button {
     this.count = this.parent.querySelector( '.js-user-followers-count' )
   }
 
+  ajax() {
+    this.url = this.button.href + '?action=' + this.button.getAttribute( 'action' )
+    super.ajax()
+  }
   ajaxSuccess(response) {
-    if (this.button.classList.contains('follow')) {
-      this.button.classList.remove('follow')
-      this.button.classList.add('unfollow')
+    console.log( this.currentUserCounter)
+    console.log( this.count)
+    if (this.button.getAttribute( 'action' ) === 'follow') {
+      this.button.setAttribute( 'action', 'unfollow')
       this.button.innerText = 'Désuivre'
       this.count.innerText = Number(this.count.innerText) + 1
       this.currentUserCounter.innerText = Number(this.currentUserCounter.innerText) + 1
     } else {
-      this.button.classList.add('follow')
-      this.button.classList.remove('unfollow')
+      this.button.setAttribute( 'action', 'follow')
       this.button.innerText = 'Suivre'
       this.count.innerText = Number(this.count.innerText) - 1
       this.currentUserCounter.innerText = Number(this.currentUserCounter.innerText) - 1
@@ -82,36 +88,22 @@ class AjaxRePostButton extends AjaxButton {
   }
 
   newClass(button) {
-    new FollowButton(button)
+    new RePostButton(button)
   }
 }
 class RePostButton extends Button {
   constructor (button) {
     super(button)
 
-
-    let parent = this.button
-    while ( !parent.classList.contains( 'user-block' ) ) {
-      parent = parent.parentElement
-    }
-    this.parent = parent
-
-    this.currentUserCounter = document.querySelector( '#js-current-user' ).querySelector( '.js-user-followings-count' )
-    this.count = this.parent.querySelector( '.js-user-followers-count' )
+    this.currentUserCounter = document.querySelector( '#js-current-user' ).querySelector( '.js-user-posts-count' )
   }
 
   ajaxSuccess(response) {
-    if (this.button.classList.contains('follow')) {
-      this.button.classList.remove('follow')
-      this.button.classList.add('unfollow')
-      this.button.innerText = 'Désuivre'
-      this.count.innerText = Number(this.count.innerText) + 1
+    if (this.button.getAttribute( 'action' ) === 'repost' ) {
+      this.button.setAttribute( 'action', 'stop-repost' )
       this.currentUserCounter.innerText = Number(this.currentUserCounter.innerText) + 1
     } else {
-      this.button.classList.add('follow')
-      this.button.classList.remove('unfollow')
-      this.button.innerText = 'Suivre'
-      this.count.innerText = Number(this.count.innerText) - 1
+      this.button.setAttribute( 'action', 'repost' )
       this.currentUserCounter.innerText = Number(this.currentUserCounter.innerText) - 1
     }
   }

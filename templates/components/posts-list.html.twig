@@ -9,8 +9,7 @@
                 <a href="{{ path( 'single_user', { 'pseudo': post.user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
             </p>
             <p class="post__message">{{ post.message }}</p>
-            <time class="post__message__date">{{ post.dateCreated ? post.dateCreated|date('d-m-Y H:i') : '' }}</time>
-            <time class="post__message__date">{{ post.dateCreated ? post.dateCreated|localizeddate('medium', 'short') }} }}</time>
+            <time class="post__message__date">{{ post.dateCreated ? post.dateCreated|localizeddate('long', 'short') }}</time>
         </article>
     {% endfor %}
 </section>

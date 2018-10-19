@@ -2,11 +2,8 @@ a{
   color: $primaryColor;
   transition: color $transitionTime $easeInOutQuart;
 
-  e:hover{
+  &:hover{
     color: $darkPrimarycolor;
+    text-decoration: none;
   }
-}
-a:link
-{
-  text-decoration:none;
 }
