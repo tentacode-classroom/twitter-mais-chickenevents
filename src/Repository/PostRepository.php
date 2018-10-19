@@ -32,13 +32,12 @@ class PostRepository extends ServiceEntityRepository
     public function getFollowingsPosts(User $user)
     {
         return $this->createQueryBuilder( 'p' )
-            ->join( 'p.user', 'u' )
-            ->join( 'u.followings', 'f')
-            ->join( 'p.userTimeline', 'ut')
-            ->join( 'ut.followings', 'utf' )
-            ->Where( 'utf = :user' )
-            ->orWhere( 'f = :user')
+            ->join( 'p.userTimeline', 'ut' )
+            ->join( 'ut.followers', 'f')
+            ->join( 'f.follower', 'follower')
+            ->where( 'follower = :user')
             ->setParameter( 'user', $user )
+            ->orderBy( 'p.dateCreated', 'DESC')
             ->getQuery()
             ->getResult();
     }

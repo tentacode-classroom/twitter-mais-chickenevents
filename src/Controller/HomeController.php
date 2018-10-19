@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +20,8 @@ class HomeController extends AbstractController
             ->getFollowingsPosts( $user );
         dump($posts);
 
-        return $this->render('pages/home.html.twig', []);
+        return $this->render('pages/home.html.twig', [
+            'posts' =>  $posts
+        ]);
     }
 }

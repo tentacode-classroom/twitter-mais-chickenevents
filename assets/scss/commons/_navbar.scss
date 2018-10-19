@@ -3,8 +3,10 @@ $navHeight: 70px;
 body > header  {
   width: $navHeight;
   background-color: $primaryColor;
-  height: 100%;
-  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
 
   &::before {
     display: block;
