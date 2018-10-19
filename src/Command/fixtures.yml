@@ -1,0 +1,17 @@
+App\Entity\User:
+  User{1..500}:
+    firstname: '<fr_FR:firstName()>'
+    lastname: '<fr_FR:lastName()>'
+    password: '<cryptPassword(azertyuiop)>'
+    email: '<email()>'
+    birthDate: '<date_create()>'
+    pseudo: '$firstname$lastname'
+    picture: '<imageUrl(500, 500)>'
+
+#App\Entity\Country:
+#  Country{1..23}:
+#    name: '<country()>'
+#
+#App\Entity\UserTag:
+#  UserTag{1..50}:
+#    name: '<languageCode()>'

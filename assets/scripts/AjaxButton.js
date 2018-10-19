@@ -112,6 +112,10 @@ class RePostButton extends ActionButton {
 
     this.currentUserCounter = document.querySelector( '#js-current-user' ).querySelector( '.js-user-posts-count' )
   }
+  ajax() {
+    this.url = this.button.href + '?action=' + this.button.getAttribute( 'action' )
+    super.ajax()
+  }
 
   ajaxSuccess(response) {
     if (this.button.getAttribute( 'action' ) === 'repost' ) {

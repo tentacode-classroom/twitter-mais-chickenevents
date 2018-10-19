@@ -6,14 +6,19 @@ use App\Entity\Post;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(UserInterface $user)
     {
+        $posts = $this->getDoctrine()->getRepository( Post::class )
+            ->getFollowingsPosts( $user );
+        dump($posts);
+
         return $this->render('pages/home.html.twig', []);
     }
 }

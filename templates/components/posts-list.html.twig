@@ -4,7 +4,11 @@
             {% if post.user.id != app.user.id %}
                 {% include 'components/repost-button.html.twig' with { 'post': post } %}
             {% endif %}
+<<<<<<< Updated upstream
             {% include 'components/like-button.html.twig' with { 'post': post } %}
+=======
+            {% include 'components/repost-button.html.twig' with { 'post': post } %}
+>>>>>>> Stashed changes
 
             <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }}
                 <a href="{{ path( 'single_user', { 'pseudo': post.user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
