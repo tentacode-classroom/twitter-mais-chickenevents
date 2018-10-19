@@ -24,29 +24,23 @@ class LikeController extends AbstractController
         $post = $this->getDoctrine()->getRepository(Post::class)
             ->find($postId);
 
-        dump($post->getLikes);
 
-//        if ($action === 'like' && !isset($like)) {
-//
-//
-//            $liker = $user;
-//            $post = $this->getDoctrine()->getRepository( Post::class )
-//            ->find( $postId );
-//
-//            $newLike = new Like();
-//            $newLike->setPost( $post );
-//            $newLike->setLiker( $liker );
-//
-//            $manager->persist($newLike);
-//            $manager->flush();
-//            return new Response('Like', 200 );
-//        } else if ( $action === 'unlike' && isset($like) ) {
-//            $manager->remove( $like );
-//            $manager->flush();
-//            return new Response('UnLike', 200 );
-//        } else {
-//            return new Response('error', 400);
-//        }
+        if ($action === 'like' && !in_array( $user, $post->getLikes()->toArray()) ) {
+            $post->addLike( $user );
+
+            $manager->persist($post);
+            $manager->flush();
+            return new Response('Like', 200 );
+
+        } else if ( $action === 'unlike' && in_array( $user, $post->getLikes()->toArray()) ) {
+            $post->removeLike( $user );
+
+            $manager->persist($post);
+            $manager->flush();
+            return new Response('UnLike', 200 );
+        } else {
+            return new Response('error', 400);
+        }
 
     }
 
