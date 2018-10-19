@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +39,13 @@ class Post
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsTimeline")
      */
     private $userTimeline;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pictureFileName;
+
+    private $picture;
 
     public function __construct()
     {
@@ -108,6 +116,30 @@ class Post
         if ($this->userTimeline->contains($userTimeline)) {
             $this->userTimeline->removeElement($userTimeline);
         }
+
+        return $this;
+    }
+
+    public function getPictureFileName(): ?string
+    {
+        return $this->pictureFileName;
+    }
+
+    public function setPictureFileName(?string $pictureFileName): self
+    {
+        $this->pictureFileName = $pictureFileName;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?UploadedFile
+    {
+        return $this->picture;
+    }
+
+    public function setAvatar(UploadedFile $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
