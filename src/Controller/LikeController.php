@@ -4,7 +4,6 @@ namespace App\Controller;
 
 
 use App\Entity\Post;
-use App\Entity\Like;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,25 +21,21 @@ class LikeController extends AbstractController
         $action = $request->get('action');
         $manager = $this->getDoctrine()->getManager();
 
-        $like = $this->getDoctrine()->getRepository(Like::class)
-            ->findOneLike($user->getId(), $postId);
-        
-        if ($action === 'like' && !isset($like)) {
+        $post = $this->getDoctrine()->getRepository(Post::class)
+            ->find($postId);
 
 
-            $liker = $user;
-            $post = $this->getDoctrine()->getRepository( Post::class )
-            ->find( $postId );
+        if ($action === 'like' && !in_array( $user, $post->getLikes()->toArray()) ) {
+            $post->addLike( $user );
 
-            $newLike = new Like();
-            $newLike->setPost( $post );
-            $newLike->setLiker( $liker );
-
-            $manager->persist($newLike);
+            $manager->persist($post);
             $manager->flush();
             return new Response('Like', 200 );
-        } else if ( $action === 'unlike' && isset($like) ) {
-            $manager->remove( $like );
+
+        } else if ( $action === 'unlike' && in_array( $user, $post->getLikes()->toArray()) ) {
+            $post->removeLike( $user );
+
+            $manager->persist($post);
             $manager->flush();
             return new Response('UnLike', 200 );
         } else {

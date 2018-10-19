@@ -40,21 +40,15 @@ class Post
     private $userTimeline;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="post")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsLike")
      */
     private $likes;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Like", mappedBy="liker")
-     */
-    private $liker;
 
     public function __construct()
     {
         $this->dateCreated = new \DateTime();
         $this->userTimeline = new ArrayCollection();
         $this->likes = new ArrayCollection();
-        $this->liker = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,62 +119,26 @@ class Post
     }
 
     /**
-     * @return Collection|Like[]
+     * @return Collection|User[]
      */
     public function getLikes(): Collection
     {
         return $this->likes;
     }
 
-    public function addLike(Like $like): self
+    public function addLike(User $like): self
     {
         if (!$this->likes->contains($like)) {
             $this->likes[] = $like;
-            $like->setPost($this);
         }
 
         return $this;
     }
 
-    public function removeLike(Like $like): self
+    public function removeLike(User $like): self
     {
         if ($this->likes->contains($like)) {
             $this->likes->removeElement($like);
-            // set the owning side to null (unless already changed)
-            if ($like->getPost() === $this) {
-                $like->setPost(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Like[]
-     */
-    public function getLiker(): Collection
-    {
-        return $this->liker;
-    }
-
-    public function addLiker(Like $liker): self
-    {
-        if (!$this->liker->contains($liker)) {
-            $this->liker[] = $liker;
-            $liker->setLiker($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLiker(Like $liker): self
-    {
-        if ($this->liker->contains($liker)) {
-            $this->liker->removeElement($liker);
-            // set the owning side to null (unless already changed)
-            if ($liker->getLiker() === $this) {
-                $liker->setLiker(null);
-            }
         }
 
         return $this;
