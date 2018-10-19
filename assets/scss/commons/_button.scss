@@ -12,28 +12,31 @@ button {
     box-shadow: 0 0 0 5px rgba($primaryColor, .25);
     border-color: $primaryColor;
   }
+}
 
-  &.send-button {
-    font-size: 0;
-    color: rgba($white, 0);
-    background: none;
-    cursor: pointer;
-    border: none;
+.send-button {
+  font-size: 0;
+  color: rgba($white, 0);
+  background: none;
+  cursor: pointer;
+  border: none;
+
+  svg {
+    fill: $primaryColor;
+    transition: fill $transitionTime $easeInOutQuart;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    box-shadow: none;
+    outline: none;
 
     svg {
-      fill: $primaryColor;
-      transition: fill $transitionTime $easeInOutQuart;
-    }
-
-    &:hover,
-    &:focus,
-    &:focus-within {
-      box-shadow: none;
-      outline: none;
-
-      svg {
-        fill: $darkPrimarycolor;
-      }
+      fill: $darkPrimarycolor;
     }
   }
+}
+.follow-button {
+  min-width: 85px;
 }

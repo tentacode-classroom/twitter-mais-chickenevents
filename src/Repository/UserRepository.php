@@ -37,7 +37,7 @@ class UserRepository extends ServiceEntityRepository
             ->where( 'u.pseudo = :username' )
             ->setParameter( 'username', $username )
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
 //    /**
