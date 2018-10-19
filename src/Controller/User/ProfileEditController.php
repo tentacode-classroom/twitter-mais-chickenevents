@@ -2,7 +2,7 @@
 
 namespace App\Controller\User;
 
-use App\Form\profileEditType;
+use App\Form\ProfileEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +18,7 @@ class ProfileEditController extends AbstractController
     public function update(UserInterface $user, Request $request)
     {
 
-        $form = $this->createForm( profileEditType::class, $user);
+        $form = $this->createForm( ProfileEditType::class, $user);
 
         $form->handleRequest($request);
 

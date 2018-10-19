@@ -19,15 +19,26 @@ class RegistrationType extends AbstractType
         $dateBegin = date( 'Y' ) - 100;
         $dateEnd = date( 'Y' ) - 13;
         $builder
-            ->add('firstname')
-            ->add('lastname')
-            ->add('password',PasswordType::class)
-            ->add('email', EmailType::class)
-            ->add('pseudo', TextType::class)
+            ->add('firstname', TextType::class, [
+                'label'  => 'Prénom'
+            ])
+            ->add('lastname', TextType::class, [
+                'label'  => 'Nom'
+            ])
+            ->add('password',PasswordType::class, [
+                'label'  => 'Mot de passe'
+            ])
+            ->add('email', EmailType::class, [
+                'label'  => 'Adresse mail'
+            ])
+            ->add('pseudo', TextType::class, [
+                'label'  => 'Nom d\'utilisateur'
+            ])
             ->add('birthDate', DateType::class, array(
-                'years'=>range($dateBegin,$dateEnd)
+                'years'=>range($dateBegin,$dateEnd),
+                'label'  => 'Date de naissance'
             ))
-            ->add("Register", SubmitType::class);
+            ->add("S'inscrire", SubmitType::class);
 
     }
 

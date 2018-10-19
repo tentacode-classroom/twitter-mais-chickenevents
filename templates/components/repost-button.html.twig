@@ -1,1 +1,6 @@
-<a class="btn repost-button" href="{{ path('re_post', { 'postId': post.id }) }}">RePost</a>
+{% if app.user in post.userTimeline %}
+    <a class="btn repost-button" href="{{ path('re_post', { 'postId': post.id }) }}" action="stop-repost">RePost</a>
+{% else %}
+    <a class="btn repost-button" href="{{ path('re_post', { 'postId': post.id }) }}" action="repost">RePost</a>
+{% endif %}
+

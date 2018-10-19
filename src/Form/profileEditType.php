@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
-class profileEditType extends AbstractType
+class ProfileEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

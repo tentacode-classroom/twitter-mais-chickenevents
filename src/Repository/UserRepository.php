@@ -25,6 +25,7 @@ class UserRepository extends ServiceEntityRepository
             ->where( 'u.firstname LIKE :searchLike' )
             ->orWhere( 'u.lastname LIKE :searchLike' )
             ->orWhere( 'u.email = :search' )
+            ->orWhere( 'u.pseudo = :search' )
             ->setParameter( 'searchLike', '%'.$search.'%' )
             ->setParameter( 'search', $search )
             ->getQuery()
