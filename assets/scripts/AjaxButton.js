@@ -38,6 +38,26 @@ class Button {
   }
 }
 
+class AjaxActionButton extends AjaxButton{
+  constructor (buttonSelector) {
+    super(buttonSelector)
+  }
+
+  newClass(button) {
+    new ActionButton(button)
+  }
+}
+class ActionButton extends Button{
+  constructor (button) {
+    super(button)
+  }
+
+  ajax() {
+    this.url = this.button.href + '?action=' + this.button.getAttribute( 'action' )
+    super.ajax()
+  }
+}
+
 class AjaxFollowButton extends AjaxButton {
   constructor (buttonSelector) {
     super(buttonSelector)
@@ -47,7 +67,7 @@ class AjaxFollowButton extends AjaxButton {
     new FollowButton(button)
   }
 }
-class FollowButton extends Button {
+class FollowButton extends ActionButton {
   constructor (button) {
     super(button)
 
@@ -59,11 +79,6 @@ class FollowButton extends Button {
 
     this.currentUserCounter = document.querySelector( '#js-current-user' ).querySelector( '.js-user-followings-count' )
     this.count = this.parent.querySelector( '.js-user-followers-count' )
-  }
-
-  ajax() {
-    this.url = this.button.href + '?action=' + this.button.getAttribute( 'action' )
-    super.ajax()
   }
   ajaxSuccess(response) {
     console.log( this.currentUserCounter)
@@ -91,7 +106,7 @@ class AjaxRePostButton extends AjaxButton {
     new RePostButton(button)
   }
 }
-class RePostButton extends Button {
+class RePostButton extends ActionButton {
   constructor (button) {
     super(button)
 
@@ -109,4 +124,27 @@ class RePostButton extends Button {
   }
 }
 
-export { AjaxFollowButton, AjaxRePostButton }
+class AjaxLikeButton extends AjaxButton{
+  constructor (buttonSelector) {
+    super(buttonSelector)
+  }
+
+  newClass(button) {
+    new LikeButton(button)
+  }
+}
+class LikeButton extends ActionButton{
+  constructor (button) {
+    super(button)
+  }
+
+  ajaxSuccess(response) {
+    if (this.button.getAttribute( 'action' ) === 'like' ) {
+      this.button.setAttribute( 'action', 'unlike' )
+    } else {
+      this.button.setAttribute( 'action', 'like' )
+    }
+  }
+}
+
+export { AjaxFollowButton, AjaxRePostButton, AjaxLikeButton }

@@ -28,6 +28,13 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getFollowings(int $userId)
+    {
+        return $this->createQueryBuilder( 'p' )
+
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */
