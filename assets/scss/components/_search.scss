@@ -1,63 +1,56 @@
 form.search {
+  width: 100%;
+  background-color: $white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+  @include formFocus;
+
+  & > * {
+    border: 0;
+    background: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type='search'] {
     width: 100%;
-    background-color: $white;
-    border: 1px solid rgba( $white, 0 );
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    box-shadow: $shadow;
-    transition: box-shadow $transitionTime,
-                border-color $transitionTime;
-    margin-left: auto;
-    margin-right: auto;
+    height: 100%;
+  }
 
-    &:focus-within {
-      box-shadow: 0 0 0 5px rgba($primaryColor, .25);
-      border-color: $primaryColor;
+  button {
+    font-size: 0;
+    color: rgba(255, 255, 255, 0);
+    padding: 0;
+    height: 100%;
+    width: 40px;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 1px;
+      background-color: $lightGrey;
+      top: 25%;
+      bottom: 25%;
     }
-    & > * {
-      border: 0;
-      background: none;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    input[type='search'] {
-      width: 100%;
-      height: 100%;
+    svg {
+      fill: $veryHardBlack;
+      transition: fill $transitionTime;
     }
 
-    button {
-      font-size: 0;
-      color: rgba( 255, 255, 255, 0);
-      padding: 0;
-      height: 100%;
-      width: 40px;
-      position: relative;
-      cursor: pointer;
-
-      &::before {
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        width: 1px;
-        background-color: $lightGrey;
-        top: 25%;
-        bottom: 25%;
-      }
+    &:hover {
       svg {
-        fill: $veryHardBlack;
-        transition: fill $transitionTime;
-      }
-
-      &:hover {
-        svg {
-          fill: $primaryColor;
-        }
+        fill: $primaryColor;
       }
     }
   }
+}

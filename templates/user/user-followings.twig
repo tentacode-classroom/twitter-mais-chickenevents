@@ -1,0 +1,19 @@
+{% extends 'client-base.html.twig' %}
+
+{% block title %}
+    {% if user %}
+        Abonnements de @{{ user.pseudo }}
+    {% else %}
+        Utilisateur introuvable
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="users-list">
+            {% for follow in user.followings %}
+                {% include 'components/user-block.html.twig' with { 'user': follow.following } %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

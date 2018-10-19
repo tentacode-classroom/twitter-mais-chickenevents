@@ -41,13 +41,6 @@
       p {
         margin: 0;
       }
-      a {
-        color: $primaryColor;
-
-        &:hover {
-          color: $darkPrimarycolor;
-        }
-      }
     }
     &__edit {
       font-size: 0;
@@ -85,9 +78,9 @@
       line-height: 1.1;
       box-shadow: $shadow;
 
-      span {
+      span,
+      a {
         display: block;
-        color: $primaryColor;
         font-size: 18px;
         font-weight: 600;
       }

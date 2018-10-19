@@ -3,5 +3,5 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
-
+    {% include 'components/posts-list.html.twig' with { 'posts': posts }%}
 {% endblock %}

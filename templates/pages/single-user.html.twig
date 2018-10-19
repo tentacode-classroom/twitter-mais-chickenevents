@@ -2,12 +2,15 @@
 
 {% block title %}
     {% if user %}
-        {{ user.firstname }} {{ user.lastname }}
+        @{{ user.pseudo }}
     {% else %}
         Utilisateur introuvable
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    {% include '/components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
+    <section>
+        {% include 'components/user-block.html.twig' with { 'user': user } %}
+    </section>
+    {% include 'components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
 {% endblock %}

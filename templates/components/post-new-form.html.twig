@@ -1,6 +1,6 @@
 {{ form_start(form, {
     'attr': {
-        'action': path( 'post_new' ) ~ '?redirect_url=' ~ app.request.uri,
+        'action': path( 'post_new_ajax' ) ~ '?redirect_url=' ~ redirect_url,
         'class': 'new-post'
     }
 }) }}

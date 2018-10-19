@@ -4,6 +4,7 @@ form.new-post {
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  @include formFocus;
 
   & > div {
     width: 100%;

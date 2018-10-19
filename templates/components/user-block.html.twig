@@ -1,4 +1,4 @@
-<div class="user-block">
+<div class="user-block" {% if id is defined %}id="{{ id }}"{% endif %}>
     <div class="user-block__details">
         <figure>
             {% if user.picture %}
@@ -27,17 +27,18 @@
     </div>
     <div class="user-block__counters">
         <p>
-            <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">
-            <span>{{ user.postsTimeline|length }}</span>
+            <a class="js-user-posts-count"
+               href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}">{{ user.postsTimeline|length }}</a>
             Posts
-            </a>
         </p>
         <p>
-            <span>{{ user.followers|length }}</span>
+            <a class="js-user-followers-count"
+               href="{{ path('user_followers', { 'pseudo': user.pseudo }) }}">{{ user.followers|length }}</a>
             Abonnés
         </p>
         <p>
-            <span>{{ user.followings|length }}</span>
+            <a class="js-user-followings-count"
+               href="{{ path('user_followings', { 'pseudo': user.pseudo }) }}">{{ user.followings|length }}</a>
             Abonnements
         </p>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\User;
 
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,8 +20,9 @@ class SingleUserController extends AbstractController
         }
 
         $user = $this->getDoctrine()->getRepository(User::class)->getUserByUserName($pseudo);
+
         return $this->render('pages/single-user.html.twig', [
-            'user' => $user[0]
+            'user' => $user
         ]);
     }
 }

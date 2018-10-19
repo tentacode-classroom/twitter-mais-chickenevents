@@ -25,6 +25,7 @@ class UserRepository extends ServiceEntityRepository
             ->where( 'u.firstname LIKE :searchLike' )
             ->orWhere( 'u.lastname LIKE :searchLike' )
             ->orWhere( 'u.email = :search' )
+            ->orWhere( 'u.pseudo = :search' )
             ->setParameter( 'searchLike', '%'.$search.'%' )
             ->setParameter( 'search', $search )
             ->getQuery()
@@ -37,11 +38,11 @@ class UserRepository extends ServiceEntityRepository
             ->where( 'u.pseudo = :username' )
             ->setParameter( 'username', $username )
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
 //    /**
-//     * @return User[] Returns an array of User objects
+//     * @return Auth[] Returns an array of Auth objects
 //     */
     /*
     public function findByExampleField($value)
@@ -58,7 +59,7 @@ class UserRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?User
+    public function findOneBySomeField($value): ?Auth
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')

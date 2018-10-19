@@ -2,9 +2,10 @@ a.btn:not(.disabled),
 a.btn:not(:disabled),
 button {
   background-color: $primaryColor;
-  border: 1px solid rgba( $primaryColor, 0 );
+  border: 1px solid rgba($primaryColor, 0);
   transition: box-shadow $transitionTime,
-        border-color $transitionTime;
+  border-color $transitionTime,
+  background-color $transitionTime;
   cursor: pointer;
   color: $white;
 
@@ -31,6 +32,31 @@ button {
       box-shadow: none;
       outline: none;
 
+      svg {
+        fill: $darkPrimarycolor;
+      }
+    }
+  }
+  &.follow-button {
+    &[action="unfollow"] {
+      background-color: $darkPrimarycolor;
+    }
+  }
+
+  &.repost-button,
+  &.like-button {
+    background: none;
+    border: none;
+    box-shadow: none;
+
+    svg {
+      fill: $grey;
+      height: 20px;
+      transition: fill $transitionTime $easeInOutQuart;
+    }
+
+    &[action="stop-repost"],
+    &[action="unlike"] {
       svg {
         fill: $darkPrimarycolor;
       }

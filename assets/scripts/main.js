@@ -1,7 +1,9 @@
 import { FormMaterial } from './FormMaterial'
-import { AjaxButton } from './AjaxButton'
+import { AjaxFollowButton, AjaxRePostButton, AjaxLikeButton } from './AjaxButton'
 
 document.addEventListener('DOMContentLoaded', () => {
   new FormMaterial('.js_form')
-  new AjaxButton( '.follow-button' )
+  new AjaxFollowButton( '.follow-button' )
+  new AjaxRePostButton( '.repost-button' )
+  new AjaxLikeButton( '.like-button' )
 })

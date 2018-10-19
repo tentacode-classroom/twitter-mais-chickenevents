@@ -37,8 +37,15 @@ class Post
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsTimeline")
+     * @ORM\JoinTable(name="user_timeline")
      */
     private $userTimeline;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="postsLike")
+     * @ORM\JoinTable(name="user_likes")
+     */
+    private $likes;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -51,6 +58,7 @@ class Post
     {
         $this->dateCreated = new \DateTime();
         $this->userTimeline = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,6 +123,32 @@ class Post
     {
         if ($this->userTimeline->contains($userTimeline)) {
             $this->userTimeline->removeElement($userTimeline);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
         }
 
         return $this;

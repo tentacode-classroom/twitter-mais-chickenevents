@@ -1,8 +1,13 @@
 <section class="posts-list">
     {% for post in posts %}
         <article class="post">
+            {% if post.user.id != app.user.id %}
+                {% include 'components/repost-button.html.twig' with { 'post': post } %}
+            {% endif %}
+            {% include 'components/like-button.html.twig' with { 'post': post } %}
+
             <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }}
-                <a href="{{ path( 'single_user', { 'pseudo': user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
+                <a href="{{ path( 'single_user', { 'pseudo': post.user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
             </p>
             <p class="post__message">{{ post.message }}</p>
             {% if post.pictureFileName %}
