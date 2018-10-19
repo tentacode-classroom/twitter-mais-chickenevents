@@ -132,12 +132,12 @@ class Post
         return $this;
     }
 
-    public function getAvatar(): ?UploadedFile
+    public function getPicture(): ?UploadedFile
     {
         return $this->picture;
     }
 
-    public function setAvatar(UploadedFile $picture): self
+    public function setPicture(UploadedFile $picture): self
     {
         $this->picture = $picture;
 
