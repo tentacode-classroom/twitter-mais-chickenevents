@@ -14,10 +14,9 @@ App\Entity\Post:
     message: '<fr_FR:realText(200)>'
     user: '@User*'
     userTimeline: ['@User<numberBetween(1, 20)>', '@User<numberBetween(1, 20)>', '@User<numberBetween(1, 20)>']
-#App\Entity\Country:
-#  Country{1..23}:
-#    name: '<country()>'
-#
-#App\Entity\UserTag:
-#  UserTag{1..50}:
-#    name: '<languageCode()>'
+    likes: ['@User<numberBetween(1, 20)>', '@User<numberBetween(1, 20)>']
+
+App\Entity\Follow:
+  Follow{1..310}:
+    Follower: '@User<numberBetween(1, 20)>'
+    Following: '@User<numberBetween(1, 20)>'

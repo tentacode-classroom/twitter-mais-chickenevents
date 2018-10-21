@@ -18,7 +18,6 @@ class HomeController extends AbstractController
     {
         $posts = $this->getDoctrine()->getRepository( Post::class )
             ->getFollowingsPosts( $user );
-        dump($posts);
 
         return $this->render('pages/home.html.twig', [
             'posts' =>  $posts

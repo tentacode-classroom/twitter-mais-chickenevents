@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <ul>
+        <li><a href="{{ path('post_index') }}">Gestion des posts</a></li>
+        <li><a href="{{ path('user_index') }}">Gestion des utilisateurs</a></li>
+        <li><a href="{{ path('follow_index') }}">Gestion des follows</a></li>
+    </ul>
+</div>
+{% endblock %}

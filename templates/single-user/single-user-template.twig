@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block content %}
+    <h1>Profil de {{ user.pseudo }}</h1>
     <section>
         {% include 'components/user-block.html.twig' with { 'user': user } %}
     </section>
-    {% include 'components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
+    <hr>
+    {% block single_user %}{% endblock %}
 {% endblock %}

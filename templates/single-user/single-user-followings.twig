@@ -1,4 +1,4 @@
-{% extends 'client-base.html.twig' %}
+{% extends 'single-user/single-user-template.twig' %}
 
 {% block title %}
     {% if user %}
@@ -8,7 +8,7 @@
     {% endif %}
 {% endblock %}
 
-{% block content %}
+{% block single_user %}
     <section>
         <div class="users-list">
             {% for follow in user.followings %}

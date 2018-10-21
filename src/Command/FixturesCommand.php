@@ -54,13 +54,12 @@ class FixturesCommand extends ContainerAwareCommand
 
         foreach ( $users as $user )
         {
-            var_dump($user->getPassword());
-//            $user->setPassword( $user, $this->encoder->encodePassword($user, $user->getPassword()));
-//            $this->manager->persist( $user );
+            $user->setPassword( $this->encoder->encodePassword($user, $user->getPassword()) );
+            $this->manager->persist( $user );
         }
 
         $this->manager->flush();
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success('Vous avez désormais des données dans votre bdd');
     }
 }

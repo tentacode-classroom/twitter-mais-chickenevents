@@ -6,10 +6,10 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserFollowingsController extends AbstractController
+class SingleUserFollowersController extends AbstractController
 {
     /**
-     * @Route("/user/{pseudo}/followings", name="user_followings")
+     * @Route("/user/{pseudo}/followers", name="user_followers")
      */
     public function index($pseudo = null)
     {
@@ -21,8 +21,8 @@ class UserFollowingsController extends AbstractController
 
         $user = $this->getDoctrine()->getRepository(User::class)->getUserByUserName($pseudo);
 
-        return $this->render('user/user-followings.twig', [
-            'user' => $user
+        return $this->render('single-user/single-user-followers.twig', [
+            'user'  =>  $user
         ]);
     }
 }

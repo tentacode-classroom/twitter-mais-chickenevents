@@ -1,0 +1,13 @@
+{% extends 'single-user/single-user-template.twig' %}
+
+{% block title %}
+    {% if user %}
+        @{{ user.pseudo }}
+    {% else %}
+        Utilisateur introuvable
+    {% endif %}
+{% endblock %}
+
+{% block single_user %}
+    {% include 'components/posts-list.html.twig' with { 'posts': user.postsTimeline } %}
+{% endblock %}

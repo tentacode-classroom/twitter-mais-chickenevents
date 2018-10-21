@@ -21,7 +21,8 @@ class InstallCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Installation of the project');
-        $io->progressStart(10);
+        $io->progressStart(6);
+
         $io->newLine(4);
         $io->section('Installation of composer dependencies');
         $process = new Process('composer i');
@@ -30,50 +31,7 @@ class InstallCommand extends Command
             $output->writeln('> '.$buffer);
         });
         $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-        $io->section('Installation of the doctrine dependencies');
-        $process = new Process('composer require --dev doctrine/doctrine-fixtures-bundle');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-        $io->section('Installation of CURL');
-        $process = new Process('sudo apt-get install curl');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-        $io->section('Installation of NodeJS 1/2');
-        $process = new Process('curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-        $io->section('Installation of NodeJS 2/2');
-        $process = new Process('sudo apt-get install -y nodejs');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $process->wait();
+
         $io->newLine(20);
         $io->title('Installation of the project');
         $io->progressAdvance();
@@ -85,46 +43,20 @@ class InstallCommand extends Command
             $output->writeln('> '.$buffer);
         });
         $process->wait();
+
         $io->newLine(20);
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Setup file config (.env)');
-        $dbname = $io->ask('What is your databse username ?', 'db_user', function ($dbname) {
-            if (empty($dbname)) {
-                throw new \RuntimeException('User cannot be empty.');
-            }
-            return $dbname;
-        });
-        $process = new Process('replace "db_user" "'.$dbname.'" -- .env');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $dbpassword = $io->askhidden('What is your databse password ?', function ($dbpassword) {
-            if (empty($dbpassword)) {
-                throw new \RuntimeException('Password cannot be empty.');
-            }
-            return $dbpassword;
-        });
-        $process = new Process('replace "db_password" "'.$dbpassword.'" -- .env');
-        $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
-            $output->writeln('> '.$buffer);
-        });
-        $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $io->progressAdvance();
-        $io->newLine(4);
-        $io->section('Launch MySQL server');
-        $process = new Process('sudo service mysql start');
+        $io->section('Build Assets');
+        $process = new Process('npm run build');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
         $process->wait();
         $process->wait();
+
         $io->newLine(20);
         $io->title('Installation of the project');
         $io->progressAdvance();
@@ -136,31 +68,31 @@ class InstallCommand extends Command
             $output->writeln('> '.$buffer);
         });
         $process->wait();
+
         $io->newLine(20);
         $io->title('Installation of the project');
         $io->progressAdvance();
         $io->newLine(4);
         $io->section('Init DataBase');
-        $process = new Process('bin/console app:mig');
+        $process = new Process('bin/console doc:mig:mig');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
         $process->wait();
+
         $io->newLine(20);
-        $io->title('Installation of the project');
+        $io->title('Fixtures');
         $io->progressAdvance();
         $io->newLine(4);
-        $io->section('Run the server');
-        $process = new Process('php bin/console server:start');
-        // $process->setTimeout(300);
+        $io->section('Create datas in bdd');
+        $process = new Process('bin/console app:fixtures');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
         $process->wait();
-        $io->newLine(20);
-        $io->title('Installation of the project');
-        $process->wait();
+
         $io->progressFinish();
         $io->newLine(20);
         $io->newLine(2);

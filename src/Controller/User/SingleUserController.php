@@ -21,7 +21,7 @@ class SingleUserController extends AbstractController
 
         $user = $this->getDoctrine()->getRepository(User::class)->getUserByUserName($pseudo);
 
-        return $this->render('pages/single-user.html.twig', [
+        return $this->render('single-user/single-user.html.twig', [
             'user' => $user
         ]);
     }
