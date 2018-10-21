@@ -1,17 +1,34 @@
 <section class="posts-list">
     {% for post in posts %}
         <article class="post">
-            {% if post.user.id != app.user.id %}
-                {% include 'components/repost-button.html.twig' with { 'post': post } %}
-            {% endif %}
-            {% include 'components/like-button.html.twig' with { 'post': post } %}
 
-            <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }}
-                <a href="{{ path( 'single_user', { 'pseudo': post.user.pseudo }) }}" class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
-            </p>
+            <div class="post__header">
+                <div class="post__header__user">
+                    <figure class="user-picture">
+                        {% if post.user.picture %}
+                            <img src="{{ post.user.picture }}" alt="photo de {{ post.user.username }}">
+                        {% else %}
+                            <img src="https://static3.7sur7.be/static/photo/2016/12/6/6/20160104164613/media_xll_8288781.jpg"
+                                 alt="photo de {{ post.user.username }}">
+                        {% endif %}
+                    </figure>
+
+                    <p class="post__user-name">{{ post.user.firstname }} {{ post.user.lastname }}
+                        <a href="{{ path( 'single_user', { 'pseudo': post.user.pseudo }) }}"
+                           class="post__user-name__nickname">@{{ post.user.pseudo }}</a>
+                    </p>
+                </div>
+                <div class="post__header__buttons">
+                    {% if post.user.id != app.user.id %}
+                        {% include 'components/repost-button.html.twig' with { 'post': post } %}
+                    {% endif %}
+                    {% include 'components/like-button.html.twig' with { 'post': post } %}
+                </div>
+            </div>
+
             <p class="post__message">{{ post.message }}</p>
             {% if post.pictureFileName %}
-            <img src="{{ asset('uploads/pictures/' ~ post.pictureFileName ) }}" width="200px" height="200px">
+                <img src="{{ asset('uploads/pictures/' ~ post.pictureFileName ) }}" width="200px" height="200px">
             {% endif %}
             <time class="post__message__date">{{ post.dateCreated ? post.dateCreated|localizeddate('long', 'short') }}</time>
         </article>

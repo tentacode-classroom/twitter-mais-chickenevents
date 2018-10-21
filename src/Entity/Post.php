@@ -177,4 +177,9 @@ class Post
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return "Post " . $this->id . " de " . $this->user->getPseudo();
+    }
 }

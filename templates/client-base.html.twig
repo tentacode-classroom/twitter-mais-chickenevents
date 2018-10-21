@@ -3,9 +3,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block aside %}
-    {#{% if is_granted('IS_AUTHENTICATED_FULLY') %}#}
     {% include 'components/user-block.html.twig' with { 'user': app.user, 'id': 'js-current-user' } %}
-    {#{% endif %}#}
 {% endblock %}
 
 {% block body %}
@@ -32,6 +30,7 @@
             )) }}
         {% endif %}
     </section>
+    <hr>
 
     {% block content %}
         <div></div>{% endblock %}

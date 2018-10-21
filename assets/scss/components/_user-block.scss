@@ -11,28 +11,6 @@
     background-color: $white;
     padding: 15px 18px;
     box-shadow: $shadow;
-
-    figure {
-      $imgSize:  55px;
-      
-      width: $imgSize;
-      padding-top: $imgSize;
-      min-width: $imgSize;
-      position: relative;
-      border-radius: 5px;
-      overflow: hidden;
-      margin: 0;
-
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        transform: translate(-50%, -50%);
-        object-fit: cover;
-      }
-    }
     &__names {
       display: flex;
       align-items: center;
@@ -85,5 +63,29 @@
         font-weight: 600;
       }
     }
+  }
+}
+
+
+
+figure.user-picture {
+  $imgSize:  55px;
+
+  width: $imgSize;
+  height: $imgSize;
+  min-width: $imgSize;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
   }
 }

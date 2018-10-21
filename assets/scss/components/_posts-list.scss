@@ -8,13 +8,30 @@ section.posts-list {
     padding: 12px;
     border: 1px solid #e6ecf0;
 
-    &__user-name {
+    &__header {
+      display: flex;
 
 
-      &__nickname{
+      &__user {
+        display: flex;
+        width: 100%;
 
+        p {
+          margin-left: 15px;
+
+          a {
+            display: block;
+          }
+        }
+      }
+      &__buttons {
+        width: 100px;
+        min-width: 100px;
+        display: flex;
+        justify-content: flex-end;
       }
     }
+
     &__message {
 
       &__date{
